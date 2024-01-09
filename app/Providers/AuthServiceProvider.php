@@ -38,4 +38,8 @@ class AuthServiceProvider extends ServiceProvider
             info('registerPermissions(): База данных не найдена или еще не перенесена. Игнорирование разрешений пользователя при загрузке приложения.');
         }
     }
+    /**
+     * Например, если мы хотим проверить, разрешено ли пользователю system.viewAny,
+     * то в контроллере мы могли бы проверить это следующим образом: $this->authorize('system.viewAny');
+     */
 }

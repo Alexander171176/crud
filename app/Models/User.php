@@ -58,7 +58,7 @@ class User extends Authenticatable
         return $this->hasRole(RoleName::ADMIN);
     }
 
-    public function isVendor(): bool
+    public function isOwner(): bool
     {
         return $this->hasRole(RoleName::OWNER);
     }
@@ -68,7 +68,7 @@ class User extends Authenticatable
         return $this->hasRole(RoleName::STAFF);
     }
 
-    public function isCustomer()
+    public function isClient()
     {
         return $this->hasRole(RoleName::CLIENT);
     }

@@ -30,7 +30,8 @@ export default {
             </Link>
 
             <ul class="mt-6">
-                <li class="flex relative px-6 py-3">
+
+                <li class="flex relative py-3">
                     <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                         <!-- Ваш иконный код здесь -->
                         <svg
@@ -47,7 +48,26 @@ export default {
                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                             ></path>
                         </svg>
-                        <span class="ml-4">Dashboard</span>
+                        <span class="ml-4">Главная</span>
+                    </NavLink>
+                </li>
+
+                <li class="flex relative py-3">
+                    <NavLink :href="route('profile.edit')" :active="route().current('profile.edit')">
+                        <!-- Ваш иконный код здесь -->
+                        <svg
+                            class="w-5 h-5"
+                            aria-hidden="true"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <span class="ml-4">Профиль</span>
                     </NavLink>
                 </li>
 

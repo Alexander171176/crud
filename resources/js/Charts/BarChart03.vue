@@ -1,29 +1,25 @@
 <template>
-  <div class="grow flex flex-col justify-center">
-    <div>
-      <canvas ref="canvas" :data="data" :width="width" :height="height"></canvas>
+  <div class="px-5 py-4">
+    <div class="grow mb-1">
+      <ul ref="legend" class="flex flex-wrap"></ul>
     </div>
-    <div class="px-5 pt-2 pb-2">
-      <ul ref="legend" class="text-sm divide-y divide-slate-100 dark:divide-slate-700"></ul>
-      <ul class="text-sm divide-y divide-slate-100 dark:divide-slate-700"></ul>
-    </div>
+  </div>
+  <div class="grow">
+    <canvas ref="canvas" :data="data" :width="width" :height="height"></canvas>
   </div>
 </template>
 
 <script>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { useDark } from '@vueuse/core'
-import { chartColors } from './ChartjsConfig'
-
+import { ref, onMounted, onUnmounted } from 'vue'
 import {
-  Chart, BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend,
+  Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
 } from 'chart.js'
 import 'chartjs-adapter-moment'
 
 // Import utilities
-import { tailwindConfig } from '../../utils/Utils'
+import { tailwindConfig, formatThousands } from '../../utils/Utils'
 
-Chart.register(BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend)
+Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend)
 
 export default {
   name: 'BarChart03',
@@ -33,39 +29,51 @@ export default {
     const canvas = ref(null)
     const legend = ref(null)
     let chart = null
-    const darkMode = useDark()
-    const { tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors
 
     onMounted(() => {
-
-      // Calculate sum of values
-      const reducer = (accumulator, currentValue) => accumulator + currentValue
-      const values = props.data.datasets.map(x => x.data.reduce(reducer))
-      const max = values.reduce(reducer)
-
       const ctx = canvas.value
       chart = new Chart(ctx, {
         type: 'bar',
         data: props.data,
         options: {
-          indexAxis: 'y',
           layout: {
             padding: {
               top: 12,
-              bottom: 12,
+              bottom: 16,
               left: 20,
               right: 20,
             },
           },
           scales: {
-            x: {
-              stacked: true,
-              display: false,
-              max: max,
-            },
             y: {
               stacked: true,
-              display: false,
+              grid: {
+                drawBorder: false,
+              },
+              beginAtZero: true,
+              ticks: {
+                maxTicksLimit: 5,
+                callback: (value) => formatThousands(value),
+              },
+            },
+            x: {
+              stacked: true,
+              type: 'time',
+              time: {
+                parser: 'MM-DD-YYYY',
+                unit: 'month',
+                displayFormats: {
+                  month: 'MMM',
+                },
+              },
+              grid: {
+                display: false,
+                drawBorder: false,
+              },
+              ticks: {
+                autoSkipPadding: 48,
+                maxRotation: 0,
+              },
             },
           },
           plugins: {
@@ -75,16 +83,13 @@ export default {
             tooltip: {
               callbacks: {
                 title: () => false, // Disable tooltip title
-                label: (context) => context.parsed.x,
+                label: (context) => formatThousands(context.parsed.y),
               },
-              bodyColor: darkMode.value ? tooltipBodyColor.dark : tooltipBodyColor.light,
-              backgroundColor: darkMode.value ? tooltipBgColor.dark : tooltipBgColor.light,
-              borderColor: darkMode.value ? tooltipBorderColor.dark : tooltipBorderColor.light,
             },
           },
           interaction: {
             intersect: false,
-            mode: 'nearest'
+            mode: 'nearest',
           },
           animation: {
             duration: 500,
@@ -105,35 +110,37 @@ export default {
             const items = c.options.plugins.legend.labels.generateLabels(c)
             items.forEach((item) => {
               const li = document.createElement('li')
-              li.style.display = 'flex'
-              li.style.justifyContent = 'space-between'
-              li.style.alignItems = 'center'
-              li.style.paddingTop = tailwindConfig().theme.padding[2.5]
-              li.style.paddingBottom = tailwindConfig().theme.padding[2.5]
-              const wrapper = document.createElement('div')
-              wrapper.style.display = 'flex'
-              wrapper.style.alignItems = 'center'
-              const box = document.createElement('div')
+              li.style.marginRight = tailwindConfig().theme.margin[3]
+              // Button element
+              const button = document.createElement('button')
+              button.style.display = 'inline-flex'
+              button.style.alignItems = 'center'
+              button.style.opacity = item.hidden ? '.3' : ''
+              button.onclick = () => {
+                c.setDatasetVisibility(item.datasetIndex, !c.isDatasetVisible(item.datasetIndex))
+                c.update()
+              }
+              // Color box
+              const box = document.createElement('span')
+              box.style.display = 'block'
               box.style.width = tailwindConfig().theme.width[3]
-              box.style.height = tailwindConfig().theme.width[3]
-              box.style.borderRadius = tailwindConfig().theme.borderRadius.sm
-              box.style.marginRight = tailwindConfig().theme.margin[3]
-              box.style.backgroundColor = item.fillStyle
-              const label = document.createElement('div')
-              const value = document.createElement('div')
-              value.style.fontWeight = tailwindConfig().theme.fontWeight.medium
-              value.style.marginLeft = tailwindConfig().theme.margin[3]
-              value.style.color = item.text === 'Other' ? tailwindConfig().theme.colors.gray[400] : item.fillStyle
-              const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0)
-              const valueText = document.createTextNode(`${parseInt(theValue / max * 100)}%`)
+              box.style.height = tailwindConfig().theme.height[3]
+              box.style.borderRadius = tailwindConfig().theme.borderRadius.full
+              box.style.marginRight = tailwindConfig().theme.margin[2]
+              box.style.borderWidth = '3px'
+              box.style.borderColor = item.fillStyle
+              box.style.pointerEvents = 'none'
+              // Label
+              const label = document.createElement('span')
+              label.style.color = tailwindConfig().theme.colors.slate[500]
+              label.style.fontSize = tailwindConfig().theme.fontSize.sm[0]
+              label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight
               const labelText = document.createTextNode(item.text)
-              value.appendChild(valueText)
               label.appendChild(labelText)
+              li.appendChild(button)
+              button.appendChild(box)
+              button.appendChild(label)
               ul.appendChild(li)
-              li.appendChild(wrapper)
-              li.appendChild(value)
-              wrapper.appendChild(box)
-              wrapper.appendChild(label)
             })
           },
         }],
@@ -141,21 +148,6 @@ export default {
     })
 
     onUnmounted(() => chart.destroy())
-
-    watch(
-      () => darkMode.value,
-      () => {
-        if (darkMode.value) {
-          chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.dark
-          chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.dark
-          chart.options.plugins.tooltip.borderColor = tooltipBorderColor.dark
-        } else {
-          chart.options.plugins.tooltip.bodyColor = tooltipBodyColor.light
-          chart.options.plugins.tooltip.backgroundColor = tooltipBgColor.light
-          chart.options.plugins.tooltip.borderColor = tooltipBorderColor.light
-        }
-        chart.update('none')
-      })
 
     return {
       canvas,

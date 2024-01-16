@@ -1,16 +1,50 @@
+<script>
+import { ref, onMounted, watch } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import MessagesSidebar from '@/Partials/messages/MessagesSidebar.vue'
+import MessagesHeader from '@/Partials/messages/MessagesHeader.vue'
+import MessagesBody from '@/Partials/messages/MessagesBody.vue'
+import MessagesFooter from '@/Partials/messages/MessagesFooter.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Messages',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        MessagesSidebar,
+        MessagesHeader,
+        MessagesBody,
+        MessagesFooter,
+    },
+    setup() {
+
+        const msgSidebarOpen = ref(true)
+        const contentArea = ref(null)
+
+        const handleScroll = () => {
+            contentArea.value.scrollTop = 99999999
+        }
+
+        onMounted(() => {
+            handleScroll()
+        })
+
+        watch(msgSidebarOpen, () => {
+            handleScroll()
+        })
+
+        return {
+            msgSidebarOpen,
+            contentArea,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div ref="contentArea" class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Messages" />
+    <AuthenticatedLayout>
         <div class="relative flex">
 
           <!-- Messages sidebar -->
@@ -24,55 +58,5 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
-
-<script>
-import { ref, onMounted, watch } from 'vue'
-import Sidebar from '../Partials/Sidebar.vue'
-import Header from '../Partials/Header.vue'
-import MessagesSidebar from '../Partials/messages/MessagesSidebar.vue'
-import MessagesHeader from '../Partials/messages/MessagesHeader.vue'
-import MessagesBody from '../Partials/messages/MessagesBody.vue'
-import MessagesFooter from '../Partials/messages/MessagesFooter.vue'
-
-export default {
-  name: 'Messages',
-  components: {
-    Sidebar,
-    Header,
-    MessagesSidebar,
-    MessagesHeader,
-    MessagesBody,
-    MessagesFooter,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-    const msgSidebarOpen = ref(true)
-    const contentArea = ref(null)
-
-    const handleScroll = () => {
-      contentArea.value.scrollTop = 99999999
-    }
-
-    onMounted(() => {
-      handleScroll()
-    })
-
-    watch(msgSidebarOpen, () => {
-      handleScroll()
-    })
-
-    return {
-      sidebarOpen,
-      msgSidebarOpen,
-      contentArea,
-    }
-  }
-}
-</script>

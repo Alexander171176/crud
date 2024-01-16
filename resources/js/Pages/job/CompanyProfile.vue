@@ -1,16 +1,119 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import JobListItem from '@/Partials/job/JobListItem.vue'
+import { Head } from '@inertiajs/vue3'
+
+import CompanyImage from '../../../images/company-icon-01.svg'
+
+export default {
+    name: 'CompanyProfile',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        JobListItem,
+    },
+    setup() {
+
+        const items = ref([
+            // Group 1
+            [
+                {
+                    id: 0,
+                    image: CompanyImage,
+                    company: 'Company 01',
+                    role: 'Senior Software Engineer Backend',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 7',
+                    type: 'New',
+                    fav: false,
+                },
+                {
+                    id: 1,
+                    image: CompanyImage,
+                    company: 'Company 02',
+                    role: 'React.js Software Developer',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 6',
+                    type: 'New',
+                    fav: true,
+                },
+                {
+                    id: 2,
+                    image: CompanyImage,
+                    company: 'Company 03',
+                    role: 'Senior Full Stack Rails Developer',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 6',
+                    type: 'New',
+                    fav: false,
+                },
+            ],
+            // Group 2
+            [
+                {
+                    id: 0,
+                    image: CompanyImage,
+                    company: 'Company 01',
+                    role: 'Senior Web App Designer',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 3',
+                    type: '',
+                    fav: false,
+                },
+                {
+                    id: 1,
+                    image: CompanyImage,
+                    company: 'Company 02',
+                    role: 'Senior UI/UX Designer',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 3',
+                    type: '',
+                    fav: false,
+                },
+            ],
+            // Group 3
+            [
+                {
+                    id: 0,
+                    image: CompanyImage,
+                    company: 'Company 01',
+                    role: 'Financial Planning & Analysis Manager',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 2',
+                    type: '',
+                    fav: false,
+                },
+                {
+                    id: 1,
+                    image: CompanyImage,
+                    company: 'Company 02',
+                    role: 'Senior Consultant Growth Strategy',
+                    link: '/job/job-post',
+                    details: 'Full-time / Remote / London, UK',
+                    date: 'Jan 2',
+                    type: '',
+                    fav: false,
+                },
+            ],
+        ])
+
+        return {
+            items,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="CompanyProfile" />
+    <AuthenticatedLayout>
 
         <!-- Profile background -->
         <div class="h-56 bg-slate-200">
@@ -107,125 +210,7 @@
           </div>
         </div>
 
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import JobListItem from '../../Partials/job/JobListItem.vue'
 
-import CompanyImage from '../../../images/company-icon-01.svg'
-
-export default {
-  name: 'CompanyProfile',
-  components: {
-    Sidebar,
-    Header,
-    JobListItem,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    const items = ref([
-      // Group 1
-      [
-        {
-          id: 0,
-          image: CompanyImage,
-          company: 'Company 01',
-          role: 'Senior Software Engineer Backend',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 7',
-          type: 'New',
-          fav: false,
-        },
-        {
-          id: 1,
-          image: CompanyImage,
-          company: 'Company 02',
-          role: 'React.js Software Developer',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 6',
-          type: 'New',
-          fav: true,
-        },
-        {
-          id: 2,
-          image: CompanyImage,
-          company: 'Company 03',
-          role: 'Senior Full Stack Rails Developer',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 6',
-          type: 'New',
-          fav: false,
-        },
-      ],
-      // Group 2
-      [
-        {
-          id: 0,
-          image: CompanyImage,
-          company: 'Company 01',
-          role: 'Senior Web App Designer',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 3',
-          type: '',
-          fav: false,
-        },
-        {
-          id: 1,
-          image: CompanyImage,
-          company: 'Company 02',
-          role: 'Senior UI/UX Designer',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 3',
-          type: '',
-          fav: false,
-        },
-      ],
-      // Group 3
-      [
-        {
-          id: 0,
-          image: CompanyImage,
-          company: 'Company 01',
-          role: 'Financial Planning & Analysis Manager',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 2',
-          type: '',
-          fav: false,
-        },
-        {
-          id: 1,
-          image: CompanyImage,
-          company: 'Company 02',
-          role: 'Senior Consultant Growth Strategy',
-          link: '/job/job-post',
-          details: 'Full-time / Remote / London, UK',
-          date: 'Jan 2',
-          type: '',
-          fav: false,
-        },
-      ],
-    ])
-
-    return {
-      sidebarOpen,
-      items,
-    }
-  }
-}
-</script>

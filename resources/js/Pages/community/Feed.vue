@@ -1,16 +1,25 @@
+<script>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import FeedLeftContent from '@/Partials/community/FeedLeftContent.vue'
+import FeedPosts from '@/Partials/community/FeedPosts.vue'
+import FeedRightContent from '@/Partials/community/FeedRightContent.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Feed',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        FeedLeftContent,
+        FeedPosts,
+        FeedRightContent,
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Feed" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 md:py-0 w-full max-w-9xl mx-auto">
 
           <div class="xl:flex">
@@ -80,37 +89,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import FeedLeftContent from '../../Partials/community/FeedLeftContent.vue'
-import FeedPosts from '../../Partials/community/FeedPosts.vue'
-import FeedRightContent from '../../Partials/community/FeedRightContent.vue'
 
-export default {
-  name: 'Feed',
-  components: {
-    Sidebar,
-    Header,
-    FeedLeftContent,
-    FeedPosts,
-    FeedRightContent,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

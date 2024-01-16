@@ -1,16 +1,155 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import JobSidebar from '@/Partials/job/JobSidebar.vue'
+import DropdownSort from '@/Components/DropdownSort.vue'
+import JobListItem from '@/Partials/job/JobListItem.vue'
+import PaginationNumeric from '@/Components/PaginationNumeric.vue'
+import { Head } from '@inertiajs/vue3'
+
+import Image01 from '../../../images/company-icon-05.svg'
+import Image02 from '../../../images/company-icon-06.svg'
+import Image03 from '../../../images/company-icon-03.svg'
+import Image04 from '../../../images/company-icon-07.svg'
+import Image05 from '../../../images/company-icon-08.svg'
+import Image06 from '../../../images/company-icon-01.svg'
+import Image07 from '../../../images/company-icon-02.svg'
+
+export default {
+    name: 'JobListing',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        JobSidebar,
+        DropdownSort,
+        JobListItem,
+        PaginationNumeric,
+    },
+    setup() {
+
+        const items = ref([
+            {
+                id: 0,
+                image: Image01,
+                company: 'Company 01',
+                role: 'Senior Web App Designer',
+                link: '/job/job-post',
+                details: 'Contract / Remote / New York, NYC',
+                date: 'Jan 4',
+                type: 'Featured',
+                fav: false,
+            },
+            {
+                id: 1,
+                image: Image01,
+                company: 'Company 02',
+                role: 'Senior Full Stack Engineer',
+                link: '/job/job-post',
+                details: 'Contract / Remote / New York, NYC',
+                date: 'Jan 7',
+                type: 'New',
+                fav: true,
+            },
+            {
+                id: 2,
+                image: Image02,
+                company: 'Company 03',
+                role: 'Ruby on Rails Engineer',
+                link: '/job/job-post',
+                details: 'Contract / Remote / New York, NYC',
+                date: 'Jan 7',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 3,
+                image: Image03,
+                company: 'Company 04',
+                role: 'Senior Software Engineer Backend',
+                link: '/job/job-post',
+                details: 'Full-time / Remote / Anywhere',
+                date: 'Jan 7',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 4,
+                image: Image04,
+                company: 'Company 05',
+                role: 'React.js Software Developer',
+                link: '/job/job-post',
+                details: 'Full-time / Remote / London, UK',
+                date: 'Jan 6',
+                type: 'New',
+                fav: true,
+            },
+            {
+                id: 5,
+                image: Image05,
+                company: 'Company 06',
+                role: 'Senior Full Stack Rails Developer',
+                link: '/job/job-post',
+                details: 'Part-time / Remote / Milan, IT',
+                date: 'Jan 6',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 6,
+                image: Image06,
+                company: 'Company 07',
+                role: 'Principal Software Engineer',
+                link: '/job/job-post',
+                details: 'Freelance / Remote / London, UK',
+                date: 'Jan 6',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 7,
+                image: Image04,
+                company: 'Company 08',
+                role: 'Contract React Native Engineer',
+                link: '/job/job-post',
+                details: 'Contract / Remote / Miami, FL',
+                date: 'Jan 6',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 8,
+                image: Image05,
+                company: 'Company 09',
+                role: 'Senior Client Engineer (React & React Native)',
+                link: '/job/job-post',
+                details: 'Full-time / Remote / Lincoln, NE',
+                date: 'Jan 5',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 9,
+                image: Image07,
+                company: 'Company 10',
+                role: 'QA Automation Engineer',
+                link: '/job/job-post',
+                details: 'Contract / Remote / Anywhere',
+                date: 'Jan 5',
+                type: 'New',
+                fav: false,
+            },
+        ])
+
+        return {
+            items,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="JobListing" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -83,161 +222,6 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import JobSidebar from '../../Partials/job/JobSidebar.vue'
-import DropdownSort from '../../Components/DropdownSort.vue'
-import JobListItem from '../../Partials/job/JobListItem.vue'
-import PaginationNumeric from '../../Components/PaginationNumeric.vue'
-
-import Image01 from '../../../images/company-icon-05.svg'
-import Image02 from '../../../images/company-icon-06.svg'
-import Image03 from '../../../images/company-icon-03.svg'
-import Image04 from '../../../images/company-icon-07.svg'
-import Image05 from '../../../images/company-icon-08.svg'
-import Image06 from '../../../images/company-icon-01.svg'
-import Image07 from '../../../images/company-icon-02.svg'
-
-export default {
-  name: 'JobListing',
-  components: {
-    Sidebar,
-    Header,
-    JobSidebar,
-    DropdownSort,
-    JobListItem,
-    PaginationNumeric,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    const items = ref([
-      {
-        id: 0,
-        image: Image01,
-        company: 'Company 01',
-        role: 'Senior Web App Designer',
-        link: '/job/job-post',
-        details: 'Contract / Remote / New York, NYC',
-        date: 'Jan 4',
-        type: 'Featured',
-        fav: false,
-      },
-      {
-        id: 1,
-        image: Image01,
-        company: 'Company 02',
-        role: 'Senior Full Stack Engineer',
-        link: '/job/job-post',
-        details: 'Contract / Remote / New York, NYC',
-        date: 'Jan 7',
-        type: 'New',
-        fav: true,
-      },
-      {
-        id: 2,
-        image: Image02,
-        company: 'Company 03',
-        role: 'Ruby on Rails Engineer',
-        link: '/job/job-post',
-        details: 'Contract / Remote / New York, NYC',
-        date: 'Jan 7',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 3,
-        image: Image03,
-        company: 'Company 04',
-        role: 'Senior Software Engineer Backend',
-        link: '/job/job-post',
-        details: 'Full-time / Remote / Anywhere',
-        date: 'Jan 7',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 4,
-        image: Image04,
-        company: 'Company 05',
-        role: 'React.js Software Developer',
-        link: '/job/job-post',
-        details: 'Full-time / Remote / London, UK',
-        date: 'Jan 6',
-        type: 'New',
-        fav: true,
-      },
-      {
-        id: 5,
-        image: Image05,
-        company: 'Company 06',
-        role: 'Senior Full Stack Rails Developer',
-        link: '/job/job-post',
-        details: 'Part-time / Remote / Milan, IT',
-        date: 'Jan 6',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 6,
-        image: Image06,
-        company: 'Company 07',
-        role: 'Principal Software Engineer',
-        link: '/job/job-post',
-        details: 'Freelance / Remote / London, UK',
-        date: 'Jan 6',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 7,
-        image: Image04,
-        company: 'Company 08',
-        role: 'Contract React Native Engineer',
-        link: '/job/job-post',
-        details: 'Contract / Remote / Miami, FL',
-        date: 'Jan 6',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 8,
-        image: Image05,
-        company: 'Company 09',
-        role: 'Senior Client Engineer (React & React Native)',
-        link: '/job/job-post',
-        details: 'Full-time / Remote / Lincoln, NE',
-        date: 'Jan 5',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 9,
-        image: Image07,
-        company: 'Company 10',
-        role: 'QA Automation Engineer',
-        link: '/job/job-post',
-        details: 'Contract / Remote / Anywhere',
-        date: 'Jan 5',
-        type: 'New',
-        fav: false,
-      },
-    ])
-
-    return {
-      sidebarOpen,
-      items,
-    }
-  }
-}
-</script>

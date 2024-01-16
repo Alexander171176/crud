@@ -1,16 +1,68 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import JobListItem from '@/Partials/job/JobListItem.vue'
+import { Head } from '@inertiajs/vue3'
+
+import Image03 from '../../../images/company-icon-03.svg'
+import Image04 from '../../../images/company-icon-07.svg'
+import Image05 from '../../../images/company-icon-08.svg'
+
+export default {
+    name: 'JobPost',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        JobListItem,
+    },
+    setup() {
+
+        const items = ref([
+            {
+                id: 3,
+                image: Image03,
+                company: 'Company 04',
+                role: 'Senior Software Engineer Backend',
+                link: '/job/job-post',
+                details: 'Full-time / Remote / Anywhere',
+                date: 'Jan 7',
+                type: 'New',
+                fav: false,
+            },
+            {
+                id: 4,
+                image: Image04,
+                company: 'Company 05',
+                role: 'React.js Software Developer',
+                link: '/job/job-post',
+                details: 'Full-time / Remote / London, UK',
+                date: 'Jan 6',
+                type: 'New',
+                fav: true,
+            },
+            {
+                id: 5,
+                image: Image05,
+                company: 'Company 06',
+                role: 'Senior Full Stack Rails Developer',
+                link: '/job/job-post',
+                details: 'Part-time / Remote / Milan, IT',
+                date: 'Jan 6',
+                type: 'New',
+                fav: false,
+            },
+        ])
+
+        return {
+            items,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="CreditCards" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full">
 
           <!-- Page content -->
@@ -174,74 +226,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import JobListItem from '../../Partials/job/JobListItem.vue'
 
-import Image03 from '../../../images/company-icon-03.svg'
-import Image04 from '../../../images/company-icon-07.svg'
-import Image05 from '../../../images/company-icon-08.svg'
-
-export default {
-  name: 'JobPost',
-  components: {
-    Sidebar,
-    Header,
-    JobListItem,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    const items = ref([
-      {
-        id: 3,
-        image: Image03,
-        company: 'Company 04',
-        role: 'Senior Software Engineer Backend',
-        link: '/job/job-post',
-        details: 'Full-time / Remote / Anywhere',
-        date: 'Jan 7',
-        type: 'New',
-        fav: false,
-      },
-      {
-        id: 4,
-        image: Image04,
-        company: 'Company 05',
-        role: 'React.js Software Developer',
-        link: '/job/job-post',
-        details: 'Full-time / Remote / London, UK',
-        date: 'Jan 6',
-        type: 'New',
-        fav: true,
-      },
-      {
-        id: 5,
-        image: Image05,
-        company: 'Company 06',
-        role: 'Senior Full Stack Rails Developer',
-        link: '/job/job-post',
-        details: 'Part-time / Remote / Milan, IT',
-        date: 'Jan 6',
-        type: 'New',
-        fav: false,
-      },
-    ])
-
-    return {
-      sidebarOpen,
-      items,
-    }
-  }
-}
-</script>

@@ -1,3 +1,14 @@
+<script>
+export default {
+    name: 'Pay',
+    data: function () {
+        return {
+            card: true,
+        }
+    }
+}
+</script>
+
 <template>
   <header class="bg-white border-b border-slate-200">
     <div class="px-4 sm:px-6 lg:px-8">
@@ -124,13 +135,4 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: 'Pay',
-  data: function () {
-    return {
-      card: true,
-    }
-  }
-}
-</script>
+

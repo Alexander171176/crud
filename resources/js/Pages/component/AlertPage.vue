@@ -1,16 +1,85 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import Banner from '@/Components/Banner.vue'
+import Banner2 from '@/Components/Banner2.vue'
+import Toast from '@/Components/Toast.vue'
+import Toast2 from '@/Components/Toast2.vue'
+import Toast3 from '@/Components/Toast3.vue'
+import Notification from '@/Components/Notification.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'AlertPage',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        Banner,
+        Banner2,
+        Toast,
+        Toast2,
+        Toast3,
+        Notification,
+    },
+    setup() {
+        const bannerWarningOpen = ref(true)
+        const bannerErrorOpen = ref(true)
+        const bannerSuccessOpen = ref(true)
+        const bannerInfoOpen = ref(true)
+        const banner2WarningOpen = ref(true)
+        const banner2ErrorOpen = ref(true)
+        const banner2SuccessOpen = ref(true)
+        const banner2InfoOpen = ref(true)
+        const toastWarningOpen = ref(true)
+        const toastErrorOpen = ref(true)
+        const toastSuccessOpen = ref(true)
+        const toastInfoOpen = ref(true)
+        const toast2WarningOpen = ref(true)
+        const toast2ErrorOpen = ref(true)
+        const toast2SuccessOpen = ref(true)
+        const toast2InfoOpen = ref(true)
+        const toast3WarningOpen = ref(true)
+        const toast3ErrorOpen = ref(true)
+        const toast3SuccessOpen = ref(true)
+        const toast3InfoOpen = ref(true)
+        const notificationWarningOpen = ref(true)
+        const notificationErrorOpen = ref(true)
+        const notificationSuccessOpen = ref(true)
+        const notificationInfoOpen = ref(true)
+
+        return {
+            bannerWarningOpen,
+            bannerErrorOpen,
+            bannerSuccessOpen,
+            bannerInfoOpen,
+            banner2WarningOpen,
+            banner2ErrorOpen,
+            banner2SuccessOpen,
+            banner2InfoOpen,
+            toastWarningOpen,
+            toastErrorOpen,
+            toastSuccessOpen,
+            toastInfoOpen,
+            toast2WarningOpen,
+            toast2ErrorOpen,
+            toast2SuccessOpen,
+            toast2InfoOpen,
+            toast3WarningOpen,
+            toast3ErrorOpen,
+            toast3SuccessOpen,
+            toast3InfoOpen,
+            notificationWarningOpen,
+            notificationErrorOpen,
+            notificationSuccessOpen,
+            notificationInfoOpen,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="CreditCards" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -176,91 +245,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import Banner from '../../Components/Banner.vue'
-import Banner2 from '../../Components/Banner2.vue'
-import Toast from '../../Components/Toast.vue'
-import Toast2 from '../../Components/Toast2.vue'
-import Toast3 from '../../Components/Toast3.vue'
-import Notification from '../../Components/Notification.vue'
 
-export default {
-  name: 'AlertPage',
-  components: {
-    Sidebar,
-    Header,
-    Banner,
-    Banner2,
-    Toast,
-    Toast2,
-    Toast3,
-    Notification,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-    const bannerWarningOpen = ref(true)
-    const bannerErrorOpen = ref(true)
-    const bannerSuccessOpen = ref(true)
-    const bannerInfoOpen = ref(true)
-    const banner2WarningOpen = ref(true)
-    const banner2ErrorOpen = ref(true)
-    const banner2SuccessOpen = ref(true)
-    const banner2InfoOpen = ref(true)
-    const toastWarningOpen = ref(true)
-    const toastErrorOpen = ref(true)
-    const toastSuccessOpen = ref(true)
-    const toastInfoOpen = ref(true)
-    const toast2WarningOpen = ref(true)
-    const toast2ErrorOpen = ref(true)
-    const toast2SuccessOpen = ref(true)
-    const toast2InfoOpen = ref(true)
-    const toast3WarningOpen = ref(true)
-    const toast3ErrorOpen = ref(true)
-    const toast3SuccessOpen = ref(true)
-    const toast3InfoOpen = ref(true)
-    const notificationWarningOpen = ref(true)
-    const notificationErrorOpen = ref(true)
-    const notificationSuccessOpen = ref(true)
-    const notificationInfoOpen = ref(true)
-
-    return {
-      sidebarOpen,
-      bannerWarningOpen,
-      bannerErrorOpen,
-      bannerSuccessOpen,
-      bannerInfoOpen,
-      banner2WarningOpen,
-      banner2ErrorOpen,
-      banner2SuccessOpen,
-      banner2InfoOpen,
-      toastWarningOpen,
-      toastErrorOpen,
-      toastSuccessOpen,
-      toastInfoOpen,
-      toast2WarningOpen,
-      toast2ErrorOpen,
-      toast2SuccessOpen,
-      toast2InfoOpen,
-      toast3WarningOpen,
-      toast3ErrorOpen,
-      toast3SuccessOpen,
-      toast3InfoOpen,
-      notificationWarningOpen,
-      notificationErrorOpen,
-      notificationSuccessOpen,
-      notificationInfoOpen,
-    }
-  }
-}
-</script>

@@ -1,17 +1,46 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import DeleteButton from '@/Partials/actions/DeleteButton.vue'
+import SearchForm from '@/Components/SearchForm.vue'
+import DropdownTransaction from '@/Components/DropdownTransaction.vue'
+import TransactionsTable from '@/Partials/finance/TransactionsTable02.vue'
+import TransactionPanel from '@/Partials/finance/TransactionPanel.vue'
+import PaginationClassic from '@/Components/PaginationClassic.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'TransactionDetails',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        DeleteButton,
+        SearchForm,
+        DropdownTransaction,
+        TransactionsTable,
+        TransactionPanel,
+        PaginationClassic,
+    },
+    setup() {
+        const selectedItems = ref([])
+        const transactionPanelOpen = ref(true)
+
+        const updateSelectedItems = (selected) => {
+            selectedItems.value = selected
+        }
+
+        return {
+            selectedItems,
+            transactionPanelOpen,
+            updateSelectedItems,
+        }
+    },
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
-
+    <Head title="TransactionDetails" />
+    <AuthenticatedLayout>
         <div class="relative">
 
           <!-- Content -->
@@ -79,52 +108,7 @@
           <TransactionPanel :transactionPanelOpen="transactionPanelOpen" @close-transactionpanel="transactionPanelOpen = false" />
 
         </div>
-
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import DeleteButton from '../../Partials/actions/DeleteButton.vue'
-import SearchForm from '../../Components/SearchForm.vue'
-import DropdownTransaction from '../../Components/DropdownTransaction.vue'
-import TransactionsTable from '../../Partials/finance/TransactionsTable02.vue'
-import TransactionPanel from '../../Partials/finance/TransactionPanel.vue'
-import PaginationClassic from '../../Components/PaginationClassic.vue'
 
-export default {
-  name: 'TransactionDetails',
-  components: {
-    Sidebar,
-    Header,
-    DeleteButton,
-    SearchForm,
-    DropdownTransaction,
-    TransactionsTable,
-    TransactionPanel,
-    PaginationClassic,
-  },
-  setup() {
-    const sidebarOpen = ref(false)
-    const selectedItems = ref([])
-    const transactionPanelOpen = ref(true)
-
-    const updateSelectedItems = (selected) => {
-      selectedItems.value = selected
-    }
-
-    return {
-      sidebarOpen,
-      selectedItems,
-      transactionPanelOpen,
-      updateSelectedItems,
-    }
-  },
-}
-</script>

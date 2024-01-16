@@ -1,16 +1,63 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import AccordionBasic from '@/Components/AccordionBasic.vue'
+import AccordionTableItem from '@/Components/AccordionTableItem.vue'
+import AccordionTableRichItem from '@/Components/AccordionTableRichItem.vue'
+import { Head } from '@inertiajs/vue3'
+
+import Image01 from '../../../images/user-40-07.jpg'
+
+export default {
+    name: 'AccordionPage',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        AccordionBasic,
+        AccordionTableItem,
+        AccordionTableRichItem,
+    },
+    setup() {
+
+        const items = ref([
+            {
+                id: '0',
+                image: Image01,
+                customer: 'Mark Cameron',
+                total: '$129.00',
+                status: 'Refunded',
+                items: '1',
+                location: '🇲🇽 New Mexico, MX',
+                type: 'Subscription',
+                description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            },
+        ])
+
+        const items2 = ref([
+            {
+                id: '0',
+                image: Image01,
+                customer: 'Mark Cameron',
+                email: 'mark.cameron@app.com',
+                location: '🇬🇧 London, UK',
+                date: '22/01/2021',
+                amount: '+249.88',
+                descriptionTitle: 'Excepteur sint occaecat cupidatat.',
+                descriptionBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            },
+        ])
+
+        return {
+            items,
+            items2,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="AccordionPage" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -72,69 +119,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import AccordionBasic from '../../Components/AccordionBasic.vue'
-import AccordionTableItem from '../../Components/AccordionTableItem.vue'
-import AccordionTableRichItem from '../../Components/AccordionTableRichItem.vue'
 
-import Image01 from '../../../images/user-40-07.jpg'
-
-export default {
-  name: 'AccordionPage',
-  components: {
-    Sidebar,
-    Header,
-    AccordionBasic,
-    AccordionTableItem,
-    AccordionTableRichItem,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    const items = ref([
-      {
-        id: '0',
-        image: Image01,
-        customer: 'Mark Cameron',
-        total: '$129.00',
-        status: 'Refunded',
-        items: '1',
-        location: '🇲🇽 New Mexico, MX',
-        type: 'Subscription',
-        description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      },
-    ])
-
-    const items2 = ref([
-      {
-        id: '0',
-        image: Image01,
-        customer: 'Mark Cameron',
-        email: 'mark.cameron@app.com',
-        location: '🇬🇧 London, UK',
-        date: '22/01/2021',
-        amount: '+249.88',
-        descriptionTitle: 'Excepteur sint occaecat cupidatat.',
-        descriptionBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis. Ut enim ad minim veniam quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      },
-    ])
-
-    return {
-      sidebarOpen,
-      items,
-      items2,
-    }
-  }
-}
-</script>

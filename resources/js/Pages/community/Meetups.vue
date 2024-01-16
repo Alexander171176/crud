@@ -1,16 +1,25 @@
+<script>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import SearchForm from '@/Components/SearchForm.vue'
+import MeetupsPosts from '@/Partials/community/MeetupsPosts.vue'
+import PaginationNumeric from '@/Components/PaginationNumeric.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Meetups',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        SearchForm,
+        MeetupsPosts,
+        PaginationNumeric,
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Meetups" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -73,36 +82,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import SearchForm from '../../Components/SearchForm.vue'
-import MeetupsPosts from '../../Partials/community/MeetupsPosts.vue'
-import PaginationNumeric from '../../Components/PaginationNumeric.vue'
 
-export default {
-  name: 'Meetups',
-  components: {
-    Sidebar,
-    Header,
-    SearchForm,
-    MeetupsPosts,
-    PaginationNumeric,
-  },
-  setup() {
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  },
-}
-</script>

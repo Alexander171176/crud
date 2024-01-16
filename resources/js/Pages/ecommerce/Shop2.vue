@@ -1,16 +1,34 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import ShopSidebar from '@/Partials/ecommerce/ShopSidebar.vue'
+import ShopCards07 from '@/Partials/ecommerce/ShopCards07.vue'
+import PaginationClassic from '@/Components/PaginationClassic.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Shop2',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        ShopSidebar,
+        ShopCards07,
+        PaginationClassic,
+    },
+    setup() {
+
+        const sidebarOpen = ref(false)
+
+        return {
+            sidebarOpen,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Shop2" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -70,37 +88,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import ShopSidebar from '../../Partials/ecommerce/ShopSidebar.vue'
-import ShopCards07 from '../../Partials/ecommerce/ShopCards07.vue'
-import PaginationClassic from '../../Components/PaginationClassic.vue'
 
-export default {
-  name: 'Shop2',
-  components: {
-    Sidebar,
-    Header,
-    ShopSidebar,
-    ShopCards07,
-    PaginationClassic,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

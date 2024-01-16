@@ -1,16 +1,51 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import Sidebar from '@/Partials/Sidebar.vue'
+import Header from '@/Partials/Header.vue'
+import SearchForm from '@/Components/SearchForm.vue'
+import DeleteButton from '@/Partials/actions/DeleteButton.vue'
+import DateSelect from '@/Components/DateSelect.vue'
+import FilterButton from '@/Components/DropdownFilter.vue'
+import InvoicesTable from '@/Partials/invoices/InvoicesTable.vue'
+import PaginationClassic from '@/Components/PaginationClassic.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Invoices',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        Sidebar,
+        Header,
+        SearchForm,
+        DeleteButton,
+        DateSelect,
+        FilterButton,
+        InvoicesTable,
+        PaginationClassic,
+    },
+    setup() {
+
+        const sidebarOpen = ref(false)
+        const selectedItems = ref([])
+
+        const updateSelectedItems = (selected) => {
+            selectedItems.value = selected
+        }
+
+        return {
+            sidebarOpen,
+            selectedItems,
+            updateSelectedItems,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Invoices" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -78,50 +113,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import SearchForm from '../../Components/SearchForm.vue'
-import DeleteButton from '../../Partials/actions/DeleteButton.vue'
-import DateSelect from '../../Components/DateSelect.vue'
-import FilterButton from '../../Components/DropdownFilter.vue'
-import InvoicesTable from '../../Partials/invoices/InvoicesTable.vue'
-import PaginationClassic from '../../Components/PaginationClassic.vue'
 
-export default {
-  name: 'Invoices',
-  components: {
-    Sidebar,
-    Header,
-    SearchForm,
-    DeleteButton,
-    DateSelect,
-    FilterButton,
-    InvoicesTable,
-    PaginationClassic,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-    const selectedItems = ref([])
-
-    const updateSelectedItems = (selected) => {
-      selectedItems.value = selected
-    }
-
-    return {
-      sidebarOpen,
-      selectedItems,
-      updateSelectedItems,
-    }
-  }
-}
-</script>

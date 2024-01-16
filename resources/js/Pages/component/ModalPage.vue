@@ -1,16 +1,61 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import ModalBasic from '@/Components/ModalBasic.vue'
+import ModalCookies from '@/Components/ModalCookies.vue'
+import ModalBlank from '@/Components/ModalBlank.vue'
+import ModalAction from '@/Components/ModalAction.vue'
+import ModalSearch from '@/Components/ModalSearch.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'ModalPage',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        ModalBasic,
+        ModalCookies,
+        ModalBlank,
+        ModalAction,
+        ModalSearch,
+    },
+    setup() {
+        const basicModalOpen = ref(false)
+        const scrollbarModalOpen = ref(false)
+        const cookiesModalOpen = ref(false)
+        const successModalOpen = ref(false)
+        const dangerModalOpen = ref(false)
+        const infoModalOpen = ref(false)
+        const feedbackModalOpen = ref(false)
+        const newsletterModalOpen = ref(false)
+        const announcementModalOpen = ref(false)
+        const integrationModalOpen = ref(false)
+        const newsModalOpen = ref(false)
+        const planModalOpen = ref(false)
+        const searchModalOpen = ref(false)
+
+        return {
+            basicModalOpen,
+            scrollbarModalOpen,
+            cookiesModalOpen,
+            successModalOpen,
+            dangerModalOpen,
+            infoModalOpen,
+            feedbackModalOpen,
+            newsletterModalOpen,
+            announcementModalOpen,
+            integrationModalOpen,
+            newsModalOpen,
+            planModalOpen,
+            searchModalOpen,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="ModalPage" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -532,67 +577,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import ModalBasic from '../../Components/ModalBasic.vue'
-import ModalCookies from '../../Components/ModalCookies.vue'
-import ModalBlank from '../../Components/ModalBlank.vue'
-import ModalAction from '../../Components/ModalAction.vue'
-import ModalSearch from '../../Components/ModalSearch.vue'
 
-export default {
-  name: 'ModalPage',
-  components: {
-    Sidebar,
-    Header,
-    ModalBasic,
-    ModalCookies,
-    ModalBlank,
-    ModalAction,
-    ModalSearch,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-    const basicModalOpen = ref(false)
-    const scrollbarModalOpen = ref(false)
-    const cookiesModalOpen = ref(false)
-    const successModalOpen = ref(false)
-    const dangerModalOpen = ref(false)
-    const infoModalOpen = ref(false)
-    const feedbackModalOpen = ref(false)
-    const newsletterModalOpen = ref(false)
-    const announcementModalOpen = ref(false)
-    const integrationModalOpen = ref(false)
-    const newsModalOpen = ref(false)
-    const planModalOpen = ref(false)
-    const searchModalOpen = ref(false)
-
-    return {
-      sidebarOpen,
-      basicModalOpen,
-      scrollbarModalOpen,
-      cookiesModalOpen,
-      successModalOpen,
-      dangerModalOpen,
-      infoModalOpen,
-      feedbackModalOpen,
-      newsletterModalOpen,
-      announcementModalOpen,
-      integrationModalOpen,
-      newsModalOpen,
-      planModalOpen,
-      searchModalOpen,
-    }
-  }
-}
-</script>

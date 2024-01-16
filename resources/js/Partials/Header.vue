@@ -53,5 +53,7 @@ import ThemeToggle from '../Components/ThemeToggle.vue';
 import UserMenu from '../Components/DropdownProfile.vue';
 
 const searchModalOpen = ref(false);
+
+const sidebarOpen = ref(false);
 </script>
 

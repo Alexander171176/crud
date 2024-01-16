@@ -1,16 +1,40 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import ShopCards01 from '@/Partials/ecommerce/ShopCards01.vue'
+import ShopCards02 from '@/Partials/ecommerce/ShopCards02.vue'
+import ShopCards03 from '@/Partials/ecommerce/ShopCards03.vue'
+import ShopCards04 from '@/Partials/ecommerce/ShopCards04.vue'
+import ShopCards05 from '@/Partials/ecommerce/ShopCards05.vue'
+import ShopCards06 from '@/Partials/ecommerce/ShopCards06.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Shop',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        ShopCards01,
+        ShopCards02,
+        ShopCards03,
+        ShopCards04,
+        ShopCards05,
+        ShopCards06,
+    },
+    setup() {
+
+        const sidebarOpen = ref(false)
+
+        return {
+            sidebarOpen,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Shop" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -110,43 +134,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import ShopCards01 from '../../Partials/ecommerce/ShopCards01.vue'
-import ShopCards02 from '../../Partials/ecommerce/ShopCards02.vue'
-import ShopCards03 from '../../Partials/ecommerce/ShopCards03.vue'
-import ShopCards04 from '../../Partials/ecommerce/ShopCards04.vue'
-import ShopCards05 from '../../Partials/ecommerce/ShopCards05.vue'
-import ShopCards06 from '../../Partials/ecommerce/ShopCards06.vue'
 
-export default {
-  name: 'Shop',
-  components: {
-    Sidebar,
-    Header,
-    ShopCards01,
-    ShopCards02,
-    ShopCards03,
-    ShopCards04,
-    ShopCards05,
-    ShopCards06,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

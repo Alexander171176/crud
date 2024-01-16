@@ -1,16 +1,264 @@
+<script>
+import { ref, onMounted } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import Sidebar from '@/Partials/Sidebar.vue'
+import Header from '@/Partials/Header.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Calendar',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        Sidebar,
+        Header,
+    },
+    setup() {
+        const today = new Date()
+        const sidebarOpen = ref(false)
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        const month = ref(today.getMonth())
+        const year = ref(today.getFullYear())
+        const daysInMonth = ref([])
+        const startingBlankDays = ref([])
+        const endingBlankDays = ref([])
+        const events = ref([
+            // Previous month
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 3),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 7),
+                eventName: '⛱️ Relax for 2 at Marienbad',
+                eventColor: 'indigo'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 12, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 12, 11),
+                eventName: 'Team Catch-up',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 18, 2),
+                eventEnd: '',
+                eventName: '✍️ New Project (2)',
+                eventColor: 'yellow'
+            },
+            // Current month
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 11),
+                eventName: 'Meeting w/ Patrick Lin',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 19),
+                eventEnd: '',
+                eventName: 'Reservation at La Ginestre',
+                eventColor: 'indigo'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 9),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 10),
+                eventName: '✍️ New Project',
+                eventColor: 'yellow'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 21),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 22),
+                eventName: '⚽ 2021 - Semi-final',
+                eventColor: 'red'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 11),
+                eventName: 'Meeting w/Carolyn',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 13),
+                eventEnd: '',
+                eventName: 'Pick up Marta at school',
+                eventColor: 'emerald'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 14),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 15),
+                eventName: 'Meeting w/ Patrick Lin',
+                eventColor: 'emerald'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 19),
+                eventEnd: '',
+                eventName: 'Reservation at La Ginestre',
+                eventColor: 'indigo'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 11),
+                eventName: '⛱️ Relax for 2 at Marienbad',
+                eventColor: 'indigo'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 19),
+                eventEnd: '',
+                eventName: '⚽ 2021 - Semi-final',
+                eventColor: 'red'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
+                eventName: 'Team Catch-up',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 2),
+                eventEnd: '',
+                eventName: 'Pick up Marta at school',
+                eventColor: 'emerald'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 3),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 7),
+                eventName: '✍️ New Project (2)',
+                eventColor: 'yellow'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 11),
+                eventName: 'Team Catch-up',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 19),
+                eventEnd: '',
+                eventName: '⚽ 2021 - Semi-final',
+                eventColor: 'red'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 0),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 23),
+                eventName: 'You stay at Meridiana B&B',
+                eventColor: 'indigo'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 11),
+                eventName: 'Meeting w/ Kylie Joh',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 11),
+                eventName: 'Call Request ->',
+                eventColor: 'sky'
+            },
+            // Next month
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 3),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 7),
+                eventName: '✍️ New Project (2)',
+                eventColor: 'yellow'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 14, 10),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
+                eventName: 'Team Catch-up',
+                eventColor: 'sky'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 2),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 3),
+                eventName: 'Pick up Marta at school',
+                eventColor: 'emerald'
+            },
+            {
+                eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 21),
+                eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 22),
+                eventName: '⚽ 2021 - Semi-final',
+                eventColor: 'red'
+            },
+        ])
+
+        const isToday = (date) => {
+            const day = new Date(year.value, month.value, date)
+            return today.toDateString() === day.toDateString() ? true : false
+        }
+
+        const getEvents = (date) => {
+            return events.value.filter(e => new Date(e.eventStart).toDateString() === new Date(year.value, month.value, date).toDateString())
+        }
+
+        const getDays = () => {
+            const days = new Date(year.value, month.value + 1, 0).getDate()
+
+            // starting empty cells (previous month)
+            const startingDayOfWeek = new Date(year.value, month.value).getDay()
+            let startingBlankDaysArray = []
+            for (let i = 1; i <= startingDayOfWeek; i++) {
+                startingBlankDaysArray.push(i)
+            }
+
+            // ending empty cells (next month)
+            const endingDayOfWeek = new Date(year.value, month.value + 1, 0).getDay()
+            let endingBlankDaysArray = []
+            for (let i = 1; i < 7 - endingDayOfWeek; i++) {
+                endingBlankDaysArray.push(i)
+            }
+
+            // current month cells
+            let daysArray = []
+            for (let i = 1; i <= days; i++) {
+                daysArray.push(i)
+            }
+
+            startingBlankDays.value = startingBlankDaysArray
+            endingBlankDays.value = endingBlankDaysArray
+            daysInMonth.value = daysArray
+        }
+
+        const eventColor = (color) => {
+            switch (color) {
+                case 'sky':
+                    return 'text-white bg-sky-500';
+                case 'indigo':
+                    return 'text-white bg-indigo-500';
+                case 'yellow':
+                    return 'text-white bg-amber-500';
+                case 'emerald':
+                    return 'text-white bg-emerald-500';
+                case 'red':
+                    return 'text-white bg-rose-400';
+                default:
+                    return '';
+            }
+        }
+
+        onMounted(() => {
+            getDays()
+        })
+
+        return {
+            sidebarOpen,
+            monthNames,
+            dayNames,
+            month,
+            year,
+            daysInMonth,
+            startingBlankDays,
+            endingBlankDays,
+            events,
+            isToday,
+            getEvents,
+            getDays,
+            eventColor,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Analytics" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -189,263 +437,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue'
-import Sidebar from '../Partials/Sidebar.vue'
-import Header from '../Partials/Header.vue'
 
-export default {
-  name: 'Calendar',
-  components: {
-    Sidebar,
-    Header,
-  },
-  setup() {
-    const today = new Date()
-    const sidebarOpen = ref(false)
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const month = ref(today.getMonth())
-    const year = ref(today.getFullYear())
-    const daysInMonth = ref([])
-    const startingBlankDays = ref([])
-    const endingBlankDays = ref([])
-    const events = ref([
-      // Previous month
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 3),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 7),
-        eventName: '⛱️ Relax for 2 at Marienbad',
-        eventColor: 'indigo'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 12, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 12, 11),
-        eventName: 'Team Catch-up',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 18, 2),
-        eventEnd: '',
-        eventName: '✍️ New Project (2)',
-        eventColor: 'yellow'
-      },
-      // Current month
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 11),
-        eventName: 'Meeting w/ Patrick Lin',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 19),
-        eventEnd: '',
-        eventName: 'Reservation at La Ginestre',
-        eventColor: 'indigo'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 9),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 10),
-        eventName: '✍️ New Project',
-        eventColor: 'yellow'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 21),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 22),
-        eventName: '⚽ 2021 - Semi-final',
-        eventColor: 'red'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 11),
-        eventName: 'Meeting w/Carolyn',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 13),
-        eventEnd: '',
-        eventName: 'Pick up Marta at school',
-        eventColor: 'emerald'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 14),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 15),
-        eventName: 'Meeting w/ Patrick Lin',
-        eventColor: 'emerald'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 19),
-        eventEnd: '',
-        eventName: 'Reservation at La Ginestre',
-        eventColor: 'indigo'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 11),
-        eventName: '⛱️ Relax for 2 at Marienbad',
-        eventColor: 'indigo'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 19),
-        eventEnd: '',
-        eventName: '⚽ 2021 - Semi-final',
-        eventColor: 'red'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
-        eventName: 'Team Catch-up',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 2),
-        eventEnd: '',
-        eventName: 'Pick up Marta at school',
-        eventColor: 'emerald'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 3),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 7),
-        eventName: '✍️ New Project (2)',
-        eventColor: 'yellow'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 11),
-        eventName: 'Team Catch-up',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 19),
-        eventEnd: '',
-        eventName: '⚽ 2021 - Semi-final',
-        eventColor: 'red'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 0),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 23),
-        eventName: 'You stay at Meridiana B&B',
-        eventColor: 'indigo'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 11),
-        eventName: 'Meeting w/ Kylie Joh',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 11),
-        eventName: 'Call Request ->',
-        eventColor: 'sky'
-      },
-      // Next month
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 3),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 7),
-        eventName: '✍️ New Project (2)',
-        eventColor: 'yellow'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 14, 10),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
-        eventName: 'Team Catch-up',
-        eventColor: 'sky'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 2),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 3),
-        eventName: 'Pick up Marta at school',
-        eventColor: 'emerald'
-      },
-      {
-        eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 21),
-        eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 22),
-        eventName: '⚽ 2021 - Semi-final',
-        eventColor: 'red'
-      },
-    ])
-
-    const isToday = (date) => {
-      const day = new Date(year.value, month.value, date)
-      return today.toDateString() === day.toDateString() ? true : false
-    }
-
-    const getEvents = (date) => {
-      return events.value.filter(e => new Date(e.eventStart).toDateString() === new Date(year.value, month.value, date).toDateString())
-    }
-
-    const getDays = () => {
-      const days = new Date(year.value, month.value + 1, 0).getDate()
-
-      // starting empty cells (previous month)
-      const startingDayOfWeek = new Date(year.value, month.value).getDay()
-      let startingBlankDaysArray = []
-      for (let i = 1; i <= startingDayOfWeek; i++) {
-        startingBlankDaysArray.push(i)
-      }
-
-      // ending empty cells (next month)
-      const endingDayOfWeek = new Date(year.value, month.value + 1, 0).getDay()
-      let endingBlankDaysArray = []
-      for (let i = 1; i < 7 - endingDayOfWeek; i++) {
-        endingBlankDaysArray.push(i)
-      }
-
-      // current month cells
-      let daysArray = []
-      for (let i = 1; i <= days; i++) {
-        daysArray.push(i)
-      }
-
-      startingBlankDays.value = startingBlankDaysArray
-      endingBlankDays.value = endingBlankDaysArray
-      daysInMonth.value = daysArray
-    }
-
-    const eventColor = (color) => {
-      switch (color) {
-        case 'sky':
-          return 'text-white bg-sky-500';
-        case 'indigo':
-          return 'text-white bg-indigo-500';
-        case 'yellow':
-          return 'text-white bg-amber-500';
-        case 'emerald':
-          return 'text-white bg-emerald-500';
-        case 'red':
-          return 'text-white bg-rose-400';
-        default:
-          return '';
-      }
-    }
-
-    onMounted(() => {
-      getDays()
-    })
-
-    return {
-      sidebarOpen,
-      monthNames,
-      dayNames,
-      month,
-      year,
-      daysInMonth,
-      startingBlankDays,
-      endingBlankDays,
-      events,
-      isToday,
-      getEvents,
-      getDays,
-      eventColor,
-    }
-  }
-}
-</script>

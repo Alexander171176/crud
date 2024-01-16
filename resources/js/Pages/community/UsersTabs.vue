@@ -1,16 +1,144 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import SearchForm from '@/Components/SearchForm.vue'
+import UsersTabsCard from '@/Partials/community/UsersTabsCard.vue'
+import PaginationNumeric from '@/Components/PaginationNumeric.vue'
+import { Head } from '@inertiajs/vue3'
+
+import Image01 from '../../../images/user-64-01.jpg'
+import Image02 from '../../../images/user-64-02.jpg'
+import Image03 from '../../../images/user-64-03.jpg'
+import Image04 from '../../../images/user-64-04.jpg'
+import Image05 from '../../../images/user-64-05.jpg'
+import Image06 from '../../../images/user-64-06.jpg'
+import Image07 from '../../../images/user-64-07.jpg'
+import Image08 from '../../../images/user-64-08.jpg'
+import Image09 from '../../../images/user-64-09.jpg'
+import Image10 from '../../../images/user-64-10.jpg'
+import Image11 from '../../../images/user-64-11.jpg'
+import Image12 from '../../../images/user-64-12.jpg'
+
+export default {
+    name: 'UsersTabs',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        SearchForm,
+        UsersTabsCard,
+        PaginationNumeric,
+    },
+    setup() {
+
+        const items = ref([
+            {
+                id: 0,
+                name: 'Dominik McNeail',
+                image: Image01,
+                link: '#0',
+                location: '🇮🇹',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 1,
+                name: 'Ivan Mesaros',
+                image: Image02,
+                link: '#0',
+                location: '🇫🇷',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 2,
+                name: 'Tisha Yanchev',
+                image: Image03,
+                link: '#0',
+                location: '🇩🇪',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 3,
+                name: 'Sergio Gonnelli',
+                image: Image04,
+                link: '#0',
+                location: '🇮🇹',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 4,
+                name: 'Jerzy Wierzy',
+                image: Image05,
+                link: '#0',
+                location: '🇪🇸',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 5,
+                name: 'Mirko Grubisic',
+                image: Image06,
+                link: '#0',
+                location: '🇩🇪',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 6,
+                name: 'Alisha Acharya',
+                image: Image07,
+                link: '#0',
+                location: '🇬🇧',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 7,
+                name: 'Brian Halligan',
+                image: Image08,
+                link: '#0',
+                location: '🇺🇸',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 8,
+                name: 'Patricia Semklo',
+                image: Image09,
+                link: '#0',
+                location: '🇮🇳',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 9,
+                name: 'Maria Martinez',
+                image: Image10,
+                link: '#0',
+                location: '🇮🇹',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 10,
+                name: 'Vedad Siljak',
+                image: Image11,
+                link: '#0',
+                location: '🇨🇦',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+            {
+                id: 11,
+                name: 'Dominik Lamakani',
+                image: Image12,
+                link: '#0',
+                location: '🇧🇪',
+                content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+            },
+        ])
+
+        return {
+            items,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="UsersTabs" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -51,150 +179,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import SearchForm from '../../Components/SearchForm.vue'
-import UsersTabsCard from '../../Partials/community/UsersTabsCard.vue'
-import PaginationNumeric from '../../Components/PaginationNumeric.vue'
 
-import Image01 from '../../../images/user-64-01.jpg'
-import Image02 from '../../../images/user-64-02.jpg'
-import Image03 from '../../../images/user-64-03.jpg'
-import Image04 from '../../../images/user-64-04.jpg'
-import Image05 from '../../../images/user-64-05.jpg'
-import Image06 from '../../../images/user-64-06.jpg'
-import Image07 from '../../../images/user-64-07.jpg'
-import Image08 from '../../../images/user-64-08.jpg'
-import Image09 from '../../../images/user-64-09.jpg'
-import Image10 from '../../../images/user-64-10.jpg'
-import Image11 from '../../../images/user-64-11.jpg'
-import Image12 from '../../../images/user-64-12.jpg'
-
-export default {
-  name: 'UsersTabs',
-  components: {
-    Sidebar,
-    Header,
-    SearchForm,
-    UsersTabsCard,
-    PaginationNumeric,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    const items = ref([
-      {
-        id: 0,
-        name: 'Dominik McNeail',
-        image: Image01,
-        link: '#0',
-        location: '🇮🇹',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 1,
-        name: 'Ivan Mesaros',
-        image: Image02,
-        link: '#0',
-        location: '🇫🇷',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 2,
-        name: 'Tisha Yanchev',
-        image: Image03,
-        link: '#0',
-        location: '🇩🇪',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 3,
-        name: 'Sergio Gonnelli',
-        image: Image04,
-        link: '#0',
-        location: '🇮🇹',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 4,
-        name: 'Jerzy Wierzy',
-        image: Image05,
-        link: '#0',
-        location: '🇪🇸',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 5,
-        name: 'Mirko Grubisic',
-        image: Image06,
-        link: '#0',
-        location: '🇩🇪',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 6,
-        name: 'Alisha Acharya',
-        image: Image07,
-        link: '#0',
-        location: '🇬🇧',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 7,
-        name: 'Brian Halligan',
-        image: Image08,
-        link: '#0',
-        location: '🇺🇸',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 8,
-        name: 'Patricia Semklo',
-        image: Image09,
-        link: '#0',
-        location: '🇮🇳',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 9,
-        name: 'Maria Martinez',
-        image: Image10,
-        link: '#0',
-        location: '🇮🇹',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 10,
-        name: 'Vedad Siljak',
-        image: Image11,
-        link: '#0',
-        location: '🇨🇦',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-      {
-        id: 11,
-        name: 'Dominik Lamakani',
-        image: Image12,
-        link: '#0',
-        location: '🇧🇪',
-        content: 'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
-      },
-    ])
-
-    return {
-      sidebarOpen,
-      items,
-    }
-  }
-}
-</script>

@@ -19,9 +19,10 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(router) // Используйте настроенный роутер здесь
+            .use(router)
             .mount(el);
     },
+    baseUrl: '/',
     progress: {
         color: '#4B5563',
     },

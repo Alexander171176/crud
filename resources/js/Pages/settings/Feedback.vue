@@ -1,16 +1,23 @@
+<script>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import SettingsSidebar from '@/Partials/settings/SettingsSidebar.vue'
+import FeedbackPanel from '@/Partials/settings/FeedbackPanel.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Apps',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        SettingsSidebar,
+        FeedbackPanel,
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Feedback" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -28,35 +35,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import SettingsSidebar from '../../Partials/settings/SettingsSidebar.vue'
-import FeedbackPanel from '../../Partials/settings/FeedbackPanel.vue'
 
-export default {
-  name: 'Apps',
-  components: {
-    Sidebar,
-    Header,
-    SettingsSidebar,
-    FeedbackPanel,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

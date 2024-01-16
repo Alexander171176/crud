@@ -1,16 +1,40 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import TasksGroups from '@/Partials/tasks/TasksGroups.vue'
+import Task01 from '@/Partials/tasks/Task01.vue'
+import Task02 from '@/Partials/tasks/Task02.vue'
+import Task03 from '@/Partials/tasks/Task03.vue'
+import Task04 from '@/Partials/tasks/Task04.vue'
+import Task05 from '@/Partials/tasks/Task05.vue'
+import Task06 from '@/Partials/tasks/Task06.vue'
+import Task07 from '@/Partials/tasks/Task07.vue'
+import Task08 from '@/Partials/tasks/Task08.vue'
+import Task09 from '@/Partials/tasks/Task09.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'TasksKanban',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        TasksGroups,
+        Task01,
+        Task02,
+        Task03,
+        Task04,
+        Task05,
+        Task06,
+        Task07,
+        Task08,
+        Task09,
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="CreditCards" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -78,51 +102,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import TasksGroups from '../../Partials/tasks/TasksGroups.vue'
-import Task01 from '../../Partials/tasks/Task01.vue'
-import Task02 from '../../Partials/tasks/Task02.vue'
-import Task03 from '../../Partials/tasks/Task03.vue'
-import Task04 from '../../Partials/tasks/Task04.vue'
-import Task05 from '../../Partials/tasks/Task05.vue'
-import Task06 from '../../Partials/tasks/Task06.vue'
-import Task07 from '../../Partials/tasks/Task07.vue'
-import Task08 from '../../Partials/tasks/Task08.vue'
-import Task09 from '../../Partials/tasks/Task09.vue'
 
-export default {
-  name: 'TasksKanban',
-  components: {
-    Sidebar,
-    Header,
-    TasksGroups,
-    Task01,
-    Task02,
-    Task03,
-    Task04,
-    Task05,
-    Task06,
-    Task07,
-    Task08,
-    Task09,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

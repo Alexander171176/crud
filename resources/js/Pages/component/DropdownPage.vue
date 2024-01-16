@@ -1,16 +1,37 @@
+<script>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import DropdownClassic from '@/Components/DropdownClassic.vue'
+import DropdownFull from '@/Components/DropdownFull.vue'
+import DropdownFilter from '@/Components/DropdownFilter.vue'
+import DropdownProfile from '@/Components/DropdownProfile.vue'
+import DropdownSwitch from '@/Components/DropdownSwitch.vue'
+import DropdownNotifications from '@/Components/DropdownNotifications.vue'
+import DropdownHelp from '@/Components/DropdownHelp.vue'
+import DropdownEditMenu from '@/Components/DropdownEditMenu.vue'
+import Datepicker from '@/Components/Datepicker.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'DropdownPage',
+    components: {
+        AuthenticatedLayout,
+        Head,
+        DropdownClassic,
+        DropdownFull,
+        DropdownFilter,
+        DropdownProfile,
+        DropdownSwitch,
+        DropdownNotifications,
+        DropdownHelp,
+        DropdownEditMenu,
+        Datepicker,
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="DropdownPage" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -94,49 +115,7 @@
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../../Partials/Sidebar.vue'
-import Header from '../../Partials/Header.vue'
-import DropdownClassic from '../../Components/DropdownClassic.vue'
-import DropdownFull from '../../Components/DropdownFull.vue'
-import DropdownFilter from '../../Components/DropdownFilter.vue'
-import DropdownProfile from '../../Components/DropdownProfile.vue'
-import DropdownSwitch from '../../Components/DropdownSwitch.vue'
-import DropdownNotifications from '../../Components/DropdownNotifications.vue'
-import DropdownHelp from '../../Components/DropdownHelp.vue'
-import DropdownEditMenu from '../../Components/DropdownEditMenu.vue'
-import Datepicker from '../../Components/Datepicker.vue'
 
-export default {
-  name: 'DropdownPage',
-  components: {
-    Sidebar,
-    Header,
-    DropdownClassic,
-    DropdownFull,
-    DropdownFilter,
-    DropdownProfile,
-    DropdownSwitch,
-    DropdownNotifications,
-    DropdownHelp,
-    DropdownEditMenu,
-    Datepicker,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-    }
-  }
-}
-</script>

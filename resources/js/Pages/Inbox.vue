@@ -1,16 +1,32 @@
+<script>
+import { ref } from 'vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import InboxSidebar from '@/Partials/inbox/InboxSidebar.vue'
+import InboxBody from '@/Partials/inbox/InboxBody.vue'
+import { Head } from '@inertiajs/vue3'
+
+export default {
+    name: 'Inbox',
+    components: {
+        Head,
+        AuthenticatedLayout,
+        InboxSidebar,
+        InboxBody,
+    },
+    setup() {
+
+        const inboxSidebarOpen = ref(false)
+
+        return {
+            inboxSidebarOpen,
+        }
+    }
+}
+</script>
+
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Inbox" />
+    <AuthenticatedLayout>
         <div class="relative flex">
 
           <!-- Inbox sidebar -->
@@ -20,37 +36,6 @@
           <InboxBody :inboxSidebarOpen="inboxSidebarOpen" @toggle-inboxsidebar="inboxSidebarOpen = !inboxSidebarOpen" />
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 
-<script>
-import { ref } from 'vue'
-import Sidebar from '../Partials/Sidebar.vue'
-import Header from '../Partials/Header.vue'
-import InboxSidebar from '../Partials/inbox/InboxSidebar.vue'
-import InboxBody from '../Partials/inbox/InboxBody.vue'
-
-export default {
-  name: 'Inbox',
-  components: {
-    Sidebar,
-    Header,
-    InboxSidebar,
-    InboxBody,
-  },
-  setup() {
-
-    const sidebarOpen = ref(false)
-    const inboxSidebarOpen = ref(false)
-
-    return {
-      sidebarOpen,
-      inboxSidebarOpen,
-    }
-  }
-}
-</script>

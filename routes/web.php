@@ -1,5 +1,69 @@
 <?php
 
+use App\Http\Controllers\Admin\Analytics\AnalyticsController;
+use App\Http\Controllers\Admin\Calendar\CalendarController;
+use App\Http\Controllers\Admin\Campaigns\CampaignsController;
+use App\Http\Controllers\Admin\Community\FeedController;
+use App\Http\Controllers\Admin\Community\ForumController;
+use App\Http\Controllers\Admin\Community\ForumPostController;
+use App\Http\Controllers\Admin\Community\MeetupsController;
+use App\Http\Controllers\Admin\Community\MeetupsPostController;
+use App\Http\Controllers\Admin\Community\UsersTabsController;
+use App\Http\Controllers\Admin\Community\UsersTilesController;
+use App\Http\Controllers\Admin\Component\AccordionPageController;
+use App\Http\Controllers\Admin\Component\AlertPageController;
+use App\Http\Controllers\Admin\Component\AvatarPageController;
+use App\Http\Controllers\Admin\Component\BadgePageController;
+use App\Http\Controllers\Admin\Component\BreadcrumbPageController;
+use App\Http\Controllers\Admin\Component\ButtonPageController;
+use App\Http\Controllers\Admin\Component\DropdownPageController;
+use App\Http\Controllers\Admin\Component\FormPageController;
+use App\Http\Controllers\Admin\Component\IconsPageController;
+use App\Http\Controllers\Admin\Component\ModalPageController;
+use App\Http\Controllers\Admin\Component\PaginationPageController;
+use App\Http\Controllers\Admin\Component\TabsPageController;
+use App\Http\Controllers\Admin\Component\TooltipPageController;
+use App\Http\Controllers\Admin\Ecommerce\CartOneController;
+use App\Http\Controllers\Admin\Ecommerce\CartThreeController;
+use App\Http\Controllers\Admin\Ecommerce\CartTwoController;
+use App\Http\Controllers\Admin\Ecommerce\CustomersController;
+use App\Http\Controllers\Admin\Ecommerce\InvoicesController;
+use App\Http\Controllers\Admin\Ecommerce\OrdersController;
+use App\Http\Controllers\Admin\Ecommerce\PayController;
+use App\Http\Controllers\Admin\Ecommerce\ProductController;
+use App\Http\Controllers\Admin\Ecommerce\ShopOneController;
+use App\Http\Controllers\Admin\Ecommerce\ShopTwoController;
+use App\Http\Controllers\Admin\Finance\CreditCardsController;
+use App\Http\Controllers\Admin\Finance\TransactionDetailsController;
+use App\Http\Controllers\Admin\Finance\TransactionsController;
+use App\Http\Controllers\Admin\Fintech\FintechController;
+use App\Http\Controllers\Admin\Inbox\InboxController;
+use App\Http\Controllers\Admin\Job\CompanyProfileController;
+use App\Http\Controllers\Admin\Job\JobListingController;
+use App\Http\Controllers\Admin\Job\JobPostController;
+use App\Http\Controllers\Admin\Messages\MessagesController;
+use App\Http\Controllers\Admin\Onboarding\OnboardingFourController;
+use App\Http\Controllers\Admin\Onboarding\OnboardingOneController;
+use App\Http\Controllers\Admin\Onboarding\OnboardingThreeController;
+use App\Http\Controllers\Admin\Onboarding\OnboardingTwoController;
+use App\Http\Controllers\Admin\ResetPassword\ResetPasswordController;
+use App\Http\Controllers\Admin\Settings\AccountController;
+use App\Http\Controllers\Admin\Settings\AppsController;
+use App\Http\Controllers\Admin\Settings\BillingController;
+use App\Http\Controllers\Admin\Settings\FeedbackController;
+use App\Http\Controllers\Admin\Settings\NotificationsController;
+use App\Http\Controllers\Admin\Settings\PlansController;
+use App\Http\Controllers\Admin\Signin\SigninController;
+use App\Http\Controllers\Admin\Signup\SignupController;
+use App\Http\Controllers\Admin\Tasks\TasksKanbanController;
+use App\Http\Controllers\Admin\Tasks\TasksListController;
+use App\Http\Controllers\Admin\Utility\ChangelogController;
+use App\Http\Controllers\Admin\Utility\EmptyStateController;
+use App\Http\Controllers\Admin\Utility\FaqsController;
+use App\Http\Controllers\Admin\Utility\KnowledgeBaseController;
+use App\Http\Controllers\Admin\Utility\PageNotFoundController;
+use App\Http\Controllers\Admin\Utility\RoadmapController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,328 +99,77 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
 // Группа маршрутов для панели управления
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
 
-    // Маршрут для Analytics
-    Route::get('/analytics', function () {
-        return Inertia::render('Analytics');
-    })->name('analytics');
-
-    // Маршрут для Fintech
-    Route::get('/fintech', function () {
-        return Inertia::render('Fintech');
-    })->name('fintech');
-
-    // Маршрут для Calendar
-    Route::get('/calendar', function () {
-        return Inertia::render('Calendar');
-    })->name('calendar');
-
-    // Маршрут для Campaigns
-    Route::get('/campaigns', function () {
-        return Inertia::render('Campaigns');
-    })->name('campaigns');
-
-    // Маршрут для Inbox
-    Route::get('/inbox', function () {
-        return Inertia::render('Inbox');
-    })->name('inbox');
-
-    // Маршрут для Messages
-    Route::get('/messages', function () {
-        return Inertia::render('Messages');
-    })->name('messages');
-
-    // Маршрут для Signin
-    Route::get('/signin', function () {
-        return Inertia::render('Signin');
-    })->name('signin');
-
-    // Маршрут для Signup
-    Route::get('/signup', function () {
-        return Inertia::render('Signup');
-    })->name('signup');
-
-    // Маршрут для ResetPassword
-    Route::get('/reset-password', function () {
-        return Inertia::render('ResetPassword');
-    })->name('reset-password');
-
-    // Маршрут для Onboarding01
-    Route::get('/onboarding-01', function () {
-        return Inertia::render('Onboarding01');
-    })->name('onboarding-01');
-
-    // Маршрут для Onboarding02
-    Route::get('/onboarding-02', function () {
-        return Inertia::render('Onboarding02');
-    })->name('onboarding-02');
-
-    // Маршрут для Onboarding03
-    Route::get('/onboarding-03', function () {
-        return Inertia::render('Onboarding03');
-    })->name('onboarding-03');
-
-    // Маршрут для Onboarding04
-    Route::get('/onboarding-04', function () {
-        return Inertia::render('Onboarding04');
-    })->name('onboarding-04');
-
-    // Маршрут для Customers
-    Route::get('/ecommerce/customers', function () {
-        return Inertia::render('ecommerce/Customers');
-    })->name('customers');
-
-    // Маршрут для Orders
-    Route::get('/ecommerce/orders', function () {
-        return Inertia::render('ecommerce/Orders');
-    })->name('orders');
-
-    // Маршрут для Invoices
-    Route::get('/ecommerce/invoices', function () {
-        return Inertia::render('ecommerce/Invoices');
-    })->name('invoices');
-
-    // Маршрут для Shop
-    Route::get('/ecommerce/shop', function () {
-        return Inertia::render('ecommerce/Shop');
-    })->name('shop');
-
-    // Маршрут для Shop2
-    Route::get('/ecommerce/shop2', function () {
-        return Inertia::render('ecommerce/Shop2');
-    })->name('shop2');
-
-    // Маршрут для Product
-    Route::get('/ecommerce/product', function () {
-        return Inertia::render('ecommerce/Product');
-    })->name('product');
-
-    // Маршрут для Cart
-    Route::get('/ecommerce/cart', function () {
-        return Inertia::render('ecommerce/Cart');
-    })->name('cart');
-
-    // Маршрут для Cart2
-    Route::get('/ecommerce/cart-2', function () {
-        return Inertia::render('ecommerce/Cart2');
-    })->name('cart2');
-
-    // Маршрут для Cart3
-    Route::get('/ecommerce/cart-3', function () {
-        return Inertia::render('ecommerce/Cart3');
-    })->name('cart3');
-
-    // Маршрут для Pay
-    Route::get('/ecommerce/pay', function () {
-        return Inertia::render('ecommerce/Pay');
-    })->name('pay');
-
-    // Маршрут для UsersTabs
-    Route::get('/community/users-tabs', function () {
-        return Inertia::render('community/UsersTabs');
-    })->name('users-tabs');
-
-    // Маршрут для UsersTiles
-    Route::get('/community/users-tiles', function () {
-        return Inertia::render('community/UsersTiles');
-    })->name('users-tiles');
-
-    // Маршрут для Profile
-    Route::get('/community/profile', function () {
-        return Inertia::render('community/Profile');
-    })->name('profile');
-
-    // Маршрут для Feed
-    Route::get('/community/feed', function () {
-        return Inertia::render('community/Feed');
-    })->name('feed');
-
-    // Маршрут для Forum
-    Route::get('/community/forum', function () {
-        return Inertia::render('community/Forum');
-    })->name('forum');
-
-    // Маршрут для ForumPost
-    Route::get('/community/forum-post', function () {
-        return Inertia::render('community/ForumPost');
-    })->name('forum-post');
-
-    // Маршрут для Meetups
-    Route::get('/community/meetups', function () {
-        return Inertia::render('community/Meetups');
-    })->name('meetups');
-
-    // Маршрут для MeetupsPost
-    Route::get('/community/meetups-post', function () {
-        return Inertia::render('community/MeetupsPost');
-    })->name('meetups-post');
-
-    // Маршрут для CreditCards
-    Route::get('/finance/cards', function () {
-        return Inertia::render('finance/CreditCards');
-    })->name('cards');
-
-    // Маршрут для Transactions
-    Route::get('/finance/transactions', function () {
-        return Inertia::render('finance/Transactions');
-    })->name('transactions');
-
-    // Маршрут для TransactionDetails
-    Route::get('/finance/transaction-details', function () {
-        return Inertia::render('finance/TransactionDetails');
-    })->name('transaction-details');
-
-    // Маршрут для JobListing
-    Route::get('/job/job-listing', function () {
-        return Inertia::render('job/JobListing');
-    })->name('job-listing');
-
-    // Маршрут для JobPost
-    Route::get('/job/job-post', function () {
-        return Inertia::render('job/JobPost');
-    })->name('job-post');
-
-    // Маршрут для CompanyProfile
-    Route::get('/job/company-profile', function () {
-        return Inertia::render('job/CompanyProfile');
-    })->name('company-profile');
-
-    // Маршрут для TasksKanban
-    Route::get('/tasks/kanban', function () {
-        return Inertia::render('tasks/TasksKanban');
-    })->name('tasks-kanban');
-
-    // Маршрут для TasksList
-    Route::get('/tasks/list', function () {
-        return Inertia::render('tasks/TasksList');
-    })->name('tasks-list');
-
-    // Маршрут для Account
-    Route::get('/settings/account', function () {
-        return Inertia::render('settings/Account');
-    })->name('account');
-
-    // Маршрут для Notifications
-    Route::get('/settings/notifications', function () {
-        return Inertia::render('settings/Notifications');
-    })->name('notifications');
-
-    // Маршрут для Apps
-    Route::get('/settings/apps', function () {
-        return Inertia::render('settings/Apps');
-    })->name('apps');
-
-    // Маршрут для Plans
-    Route::get('/settings/plans', function () {
-        return Inertia::render('settings/Plans');
-    })->name('plans');
-
-    // Маршрут для Billing
-    Route::get('/settings/billing', function () {
-        return Inertia::render('settings/Billing');
-    })->name('billing');
-
-    // Маршрут для Feedback
-    Route::get('/settings/feedback', function () {
-        return Inertia::render('settings/Feedback');
-    })->name('feedback');
-
-    // Маршрут для Changelog
-    Route::get('/utility/changelog', function () {
-        return Inertia::render('utility/Changelog');
-    })->name('changelog');
-
-    // Маршрут для Roadmap
-    Route::get('/utility/roadmap', function () {
-        return Inertia::render('utility/Roadmap');
-    })->name('roadmap');
-
-    // Маршрут для Faqs
-    Route::get('/utility/faqs', function () {
-        return Inertia::render('utility/Faqs');
-    })->name('faqs');
-
-    // Маршрут для EmptyState
-    Route::get('/utility/empty-state', function () {
-        return Inertia::render('utility/EmptyState');
-    })->name('empty-state');
-
-    // Маршрут для PageNotFound
-    Route::get('/utility/404', function () {
-        return Inertia::render('utility/PageNotFound');
-    })->name('page-not-found');
-
-    // Маршрут для KnowledgeBase
-    Route::get('/utility/knowledge-base', function () {
-        return Inertia::render('utility/KnowledgeBase');
-    })->name('knowledge-base');
-
-    // Маршрут для ButtonPage
-    Route::get('/component/button', function () {
-        return Inertia::render('component/ButtonPage');
-    })->name('button-page');
-
-    // Маршрут для FormPage
-    Route::get('/component/form', function () {
-        return Inertia::render('component/FormPage');
-    })->name('form-page');
-
-    // Маршрут для DropdownPage
-    Route::get('/component/dropdown', function () {
-        return Inertia::render('component/DropdownPage');
-    })->name('dropdown-page');
-
-    // Маршрут для AlertPage
-    Route::get('/component/alert', function () {
-        return Inertia::render('component/AlertPage');
-    })->name('alert-page');
-
-    // Маршрут для ModalPage
-    Route::get('/component/modal', function () {
-        return Inertia::render('component/ModalPage');
-    })->name('modal-page');
-
-    // Маршрут для PaginationPage
-    Route::get('/component/pagination', function () {
-        return Inertia::render('component/PaginationPage');
-    })->name('pagination-page');
-
-    // Маршрут для TabsPage
-    Route::get('/component/tabs', function () {
-        return Inertia::render('component/TabsPage');
-    })->name('tabs-page');
-
-    // Маршрут для BreadcrumbPage
-    Route::get('/component/breadcrumb', function () {
-        return Inertia::render('component/BreadcrumbPage');
-    })->name('breadcrumb-page');
-
-    // Маршрут для BadgePage
-    Route::get('/component/badge', function () {
-        return Inertia::render('component/BadgePage');
-    })->name('badge-page');
-
-    // Маршрут для AvatarPage
-    Route::get('/component/avatar', function () {
-        return Inertia::render('component/AvatarPage');
-    })->name('avatar-page');
-
-    // Маршрут для TooltipPage
-    Route::get('/component/tooltip', function () {
-        return Inertia::render('component/TooltipPage');
-    })->name('tooltip-page');
-
-    // Маршрут для AccordionPage
-    Route::get('/component/accordion', function () {
-        return Inertia::render('component/AccordionPage');
-    })->name('accordion-page');
-
-    // Маршрут для IconsPage
-    Route::get('/component/icons', function () {
-        return Inertia::render('component/IconsPage');
-    })->name('icons-page');
+    Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');// Маршрут для Analytics
+    Route::get('/fintech', [FintechController::class, 'index'])->name('fintech');// Маршрут для Fintech
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');// Маршрут для Calendar
+    Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');// Маршрут для Campaigns
+    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox');// Маршрут для Inbox
+    Route::get('/messages', [MessagesController::class, 'index'])->name('messages');// Маршрут для Messages
+    Route::get('/signin', [SigninController::class, 'index'])->name('signin');// Маршрут для Signin
+    Route::get('/signup', [SignupController::class, 'index'])->name('signup');// Маршрут для Signup
+    Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');// Маршрут для ResetPassword
+    Route::get('/onboarding-01', [OnboardingOneController::class, 'index'])->name('onboarding-01');// Маршрут для Onboarding01
+    Route::get('/onboarding-02', [OnboardingTwoController::class, 'index'])->name('onboarding-02');// Маршрут для Onboarding02
+    Route::get('/onboarding-03', [OnboardingThreeController::class, 'index'])->name('onboarding-03');// Маршрут для Onboarding03
+    Route::get('/onboarding-04', [OnboardingFourController::class, 'index'])->name('onboarding-04');// Маршрут для Onboarding04
+    Route::get('/ecommerce/customers', [CustomersController::class, 'index'])->name('customers');// Маршрут для Customers
+    Route::get('/ecommerce/orders', [OrdersController::class, 'index'])->name('orders');// Маршрут для Orders
+    Route::get('/ecommerce/invoices', [InvoicesController::class, 'index'])->name('invoices');// Маршрут для Invoices
+    Route::get('/ecommerce/shop', [ShopOneController::class, 'index'])->name('shop');// Маршрут для Shop
+    Route::get('/ecommerce/shop2', [ShopTwoController::class, 'index'])->name('shop2');// Маршрут для Shop2
+    Route::get('/ecommerce/product', [ProductController::class, 'index'])->name('product');// Маршрут для Product
+    Route::get('/ecommerce/cart', [CartOneController::class, 'index'])->name('cart');// Маршрут для Cart
+    Route::get('/ecommerce/cart-2', [CartTwoController::class, 'index'])->name('cart2');// Маршрут для Cart2
+    Route::get('/ecommerce/cart-3', [CartThreeController::class, 'index'])->name('cart3');// Маршрут для Cart3
+    Route::get('/ecommerce/pay', [PayController::class, 'index'])->name('pay');// Маршрут для Pay
+    Route::get('/community/users-tabs', [UsersTabsController::class, 'index'])->name('users-tabs');// Маршрут для UsersTabs
+    Route::get('/community/users-tiles', [UsersTilesController::class, 'index'])->name('users-tiles');// Маршрут для UsersTiles
+    Route::get('/community/profile', [App\Http\Controllers\Admin\Community\ProfileController::class, 'index'])->name('profile');// Маршрут для Profile
+    Route::get('/community/feed', [FeedController::class, 'index'])->name('feed');// Маршрут для Feed
+    Route::get('/community/forum', [ForumController::class, 'index'])->name('forum');// Маршрут для Forum
+    Route::get('/community/forum-post', [ForumPostController::class, 'index'])->name('forum-post');// Маршрут для ForumPost
+    Route::get('/community/meetups', [MeetupsController::class, 'index'])->name('meetups');// Маршрут для Meetups
+    Route::get('/community/meetups-post', [MeetupsPostController::class, 'index'])->name('meetups-post');// Маршрут для MeetupsPost
+    Route::get('/finance/cards', [CreditCardsController::class, 'index'])->name('cards');// Маршрут для CreditCards
+    Route::get('/finance/transactions', [TransactionsController::class, 'index'])->name('transactions');// Маршрут для Transactions
+    Route::get('/finance/transaction-details', [TransactionDetailsController::class, 'index'])->name('transaction-details');// Маршрут для TransactionDetails
+    Route::get('/job/job-listing', [JobListingController::class, 'index'])->name('job-listing');// Маршрут для JobListing
+    Route::get('/job/job-post', [JobPostController::class, 'index'])->name('job-post');// Маршрут для JobPost
+    Route::get('/job/company-profile', [CompanyProfileController::class, 'index'])->name('company-profile');// Маршрут для CompanyProfile
+    Route::get('/tasks/kanban', [TasksKanbanController::class, 'index'])->name('tasks-kanban');// Маршрут для TasksKanban
+    Route::get('/tasks/list', [TasksListController::class, 'index'])->name('tasks-list');// Маршрут для TasksList
+    Route::get('/settings/account', [AccountController::class, 'index'])->name('account');// Маршрут для Account
+    Route::get('/settings/notifications', [NotificationsController::class, 'index'])->name('notifications');// Маршрут для Notifications
+    Route::get('/settings/apps', [AppsController::class, 'index'])->name('apps');// Маршрут для Apps
+    Route::get('/settings/plans', [PlansController::class, 'index'])->name('plans');// Маршрут для Plans
+    Route::get('/settings/billing', [BillingController::class, 'index'])->name('billing');// Маршрут для Billing
+    Route::get('/settings/feedback', [FeedbackController::class, 'index'])->name('feedback');// Маршрут для Feedback
+    Route::get('/utility/changelog', [ChangelogController::class, 'index'])->name('changelog');// Маршрут для Changelog
+    Route::get('/utility/roadmap', [RoadmapController::class, 'index'])->name('roadmap');// Маршрут для Roadmap
+    Route::get('/utility/faqs', [FaqsController::class, 'index'])->name('faqs');// Маршрут для Faqs
+    Route::get('/utility/empty-state', [EmptyStateController::class, 'index'])->name('empty-state');// Маршрут для EmptyState
+    Route::get('/utility/404', [PageNotFoundController::class, 'index'])->name('page-not-found');// Маршрут для PageNotFound
+    Route::get('/utility/knowledge-base', [KnowledgeBaseController::class, 'index'])->name('knowledge-base');// Маршрут для KnowledgeBase
+    Route::get('/component/button', [ButtonPageController::class, 'index'])->name('button-page');// Маршрут для ButtonPage
+    Route::get('/component/form', [FormPageController::class, 'index'])->name('form-page');// Маршрут для FormPage
+    Route::get('/component/dropdown', [DropdownPageController::class, 'index'])->name('dropdown-page');// Маршрут для DropdownPage
+    Route::get('/component/alert', [AlertPageController::class, 'index'])->name('alert-page');// Маршрут для AlertPage
+    Route::get('/component/modal', [ModalPageController::class, 'index'])->name('modal-page');// Маршрут для ModalPage
+    Route::get('/component/pagination', [PaginationPageController::class, 'index'])->name('pagination-page');// Маршрут для PaginationPage
+    Route::get('/component/tabs', [TabsPageController::class, 'index'])->name('tabs-page');// Маршрут для TabsPage
+    Route::get('/component/breadcrumb', [BreadcrumbPageController::class, 'index'])->name('breadcrumb-page');// Маршрут для BreadcrumbPage
+    Route::get('/component/badge', [BadgePageController::class, 'index'])->name('badge-page');// Маршрут для BadgePage
+    Route::get('/component/avatar', [AvatarPageController::class, 'index'])->name('avatar-page');// Маршрут для AvatarPage
+    Route::get('/component/tooltip', [TooltipPageController::class, 'index'])->name('tooltip-page');// Маршрут для TooltipPage
+    Route::get('/component/accordion', [AccordionPageController::class, 'index'])->name('accordion-page');// Маршрут для AccordionPage
+    Route::get('/component/icons', [IconsPageController::class, 'index'])->name('icons-page');// Маршрут для IconsPage
 
     // Другие маршруты...
 });

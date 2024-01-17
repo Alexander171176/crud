@@ -112,4 +112,18 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Logout
+    |--------------------------------------------------------------------------
+    |
+    | This controls the default behavior of logging out users from your
+    | application. You may modify this as needed.
+    |
+    */
+    'logout' => [
+        'method' => 'POST',
+        'path' => '/logout',
+    ],
+
 ];

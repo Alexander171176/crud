@@ -1,6 +1,7 @@
 // router.js
 
 import { createWebHistory, createRouter } from 'vue-router';
+import {getCurrentInstance} from "vue";
 
 const routes = [
     {
@@ -397,6 +398,12 @@ const routes = [
         path: '/:pathMatch(.*)*',
         component: () => import('./Pages/utility/PageNotFound.vue'),
         name: 'page-not-found',
+        meta: { middleware: ['auth', 'verified'] },
+    },
+    {
+        path: '/logout',
+        component: () => import('./Components/LogoutComponent.vue'),
+        name: 'logout',
         meta: { middleware: ['auth', 'verified'] },
     },
     // Добавьте другие маршруты здесь, если необходимо

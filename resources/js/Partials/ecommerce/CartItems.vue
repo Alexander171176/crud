@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'CartItems',
+}
+</script>
+
 <template>
   <ul>
     <!-- Cart item -->
@@ -193,8 +199,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'CartItems',
-}
-</script>
+

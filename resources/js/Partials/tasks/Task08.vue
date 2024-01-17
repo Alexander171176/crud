@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'Task08',
+}
+</script>
+
 <template>
   <div class="bg-white shadow-lg rounded-sm border border-slate-200 p-4">
     <!-- Body -->
@@ -47,8 +53,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Task08',
-}
-</script>
+

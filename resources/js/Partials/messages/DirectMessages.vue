@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'DirectMessages',
+    props: ['msgSidebarOpen'],
+}
+</script>
+
 <template>
   <div class="mt-4">
     <div class="text-xs font-semibold text-slate-400 uppercase mb-3">Direct messages</div>
@@ -90,9 +97,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'DirectMessages',
-  props: ['msgSidebarOpen'],
-}
-</script>
+

@@ -1,3 +1,23 @@
+<script>
+import { ref } from 'vue'
+
+export default {
+    name: 'NotificationsPanel',
+    setup() {
+
+        const comments = ref('On')
+        const messages = ref('On')
+        const mentions = ref('Off')
+
+        return {
+            comments,
+            messages,
+            mentions,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="grow">
 
@@ -121,22 +141,3 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-
-export default {
-  name: 'NotificationsPanel',
-  setup() {
-
-  const comments = ref('On')
-  const messages = ref('On')
-  const mentions = ref('Off')
-
-    return {
-      comments,
-      messages,
-      mentions,
-    }
-  }
-}
-</script>

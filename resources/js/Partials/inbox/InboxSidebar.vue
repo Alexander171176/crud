@@ -1,3 +1,15 @@
+<script>
+import ChannelMenu from '../messages/ChannelMenu.vue'
+
+export default {
+    name: 'InboxSidebar',
+    props: ['inboxSidebarOpen'],
+    components: {
+        ChannelMenu,
+    },
+}
+</script>
+
 <template>
   <div
     id="inbox-sidebar"
@@ -139,14 +151,4 @@
   </div>
 </template>
 
-<script>
-import ChannelMenu from '../messages/ChannelMenu.vue'
 
-export default {
-  name: 'InboxSidebar',
-  props: ['inboxSidebarOpen'],
-  components: {
-    ChannelMenu,
-  },
-}
-</script>

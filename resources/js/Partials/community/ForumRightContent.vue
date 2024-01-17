@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'ForumRightContent',
+}
+</script>
+
 <template>
   <div class="w-full hidden xl:block xl:w-72">
     <div class="lg:sticky lg:top-16 lg:h-[calc(100vh-64px)] lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar">
@@ -159,8 +165,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ForumRightContent',
-}
-</script>
+

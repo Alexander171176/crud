@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'BillingPanel',
+}
+</script>
+
 <template>
   <div class="grow">
 
@@ -140,8 +146,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'BillingPanel',
-}
-</script>

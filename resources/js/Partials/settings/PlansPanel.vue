@@ -1,3 +1,19 @@
+<script>
+import { ref } from 'vue'
+
+export default {
+    name: 'PlansPanel',
+    setup() {
+
+        const annual = ref(true)
+
+        return {
+            annual
+        }
+    }
+}
+</script>
+
 <template>
   <div class="grow">
 
@@ -247,7 +263,7 @@
           </li>
         </ul>
       </section>
-      
+
     </div>
 
     <!-- Panel footer -->
@@ -263,18 +279,3 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-
-export default {
-  name: 'PlansPanel',
-  setup() {
-
-  const annual = ref(true)
-
-    return {
-      annual
-    }
-  }  
-}
-</script>

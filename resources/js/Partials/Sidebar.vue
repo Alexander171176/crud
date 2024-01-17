@@ -1,3 +1,53 @@
+<script setup>
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import SidebarLinkGroup from './SidebarLinkGroup.vue'
+
+const props = defineProps(['sidebarOpen'])
+const emit = defineEmits()
+
+const trigger = ref(null)
+const sidebar = ref(null)
+const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
+const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
+const currentRoute = useRouter().currentRoute.value
+
+// close on click outside
+const clickHandler = ({ target }) => {
+    if (!sidebar.value || !trigger.value) return
+    if (!props.sidebarOpen || sidebar.value.contains(target) || trigger.value.contains(target)) return
+    emit('close-sidebar')
+}
+
+// close if the esc key is pressed
+const keyHandler = ({ keyCode }) => {
+    if (!props.sidebarOpen || keyCode !== 27) return
+    emit('close-sidebar')
+}
+
+onMounted(() => {
+    document.addEventListener('click', clickHandler)
+    document.addEventListener('keydown', keyHandler)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('click', clickHandler)
+    document.removeEventListener('keydown', keyHandler)
+})
+
+watch(sidebarExpanded, () => {
+    localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
+    if (sidebarExpanded.value) {
+        document.querySelector('body').classList.add('sidebar-expanded')
+    } else {
+        document.querySelector('body').classList.remove('sidebar-expanded')
+    }
+})
+
+// не забудьте вернуть переменные
+{ trigger, sidebar, sidebarExpanded, currentRoute }
+</script>
+
 <template>
   <div>
     <!-- Sidebar backdrop (mobile only) -->
@@ -837,52 +887,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
-import SidebarLinkGroup from './SidebarLinkGroup.vue'
 
-const props = defineProps(['sidebarOpen'])
-const emit = defineEmits()
-
-const trigger = ref(null)
-const sidebar = ref(null)
-const storedSidebarExpanded = localStorage.getItem('sidebar-expanded')
-const sidebarExpanded = ref(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true')
-const currentRoute = useRouter().currentRoute.value
-
-// close on click outside
-const clickHandler = ({ target }) => {
-    if (!sidebar.value || !trigger.value) return
-    if (!props.sidebarOpen || sidebar.value.contains(target) || trigger.value.contains(target)) return
-    emit('close-sidebar')
-}
-
-// close if the esc key is pressed
-const keyHandler = ({ keyCode }) => {
-    if (!props.sidebarOpen || keyCode !== 27) return
-    emit('close-sidebar')
-}
-
-onMounted(() => {
-    document.addEventListener('click', clickHandler)
-    document.addEventListener('keydown', keyHandler)
-})
-
-onUnmounted(() => {
-    document.removeEventListener('click', clickHandler)
-    document.removeEventListener('keydown', keyHandler)
-})
-
-watch(sidebarExpanded, () => {
-    localStorage.setItem('sidebar-expanded', sidebarExpanded.value)
-    if (sidebarExpanded.value) {
-        document.querySelector('body').classList.add('sidebar-expanded')
-    } else {
-        document.querySelector('body').classList.remove('sidebar-expanded')
-    }
-})
-
-// не забудьте вернуть переменные
-{ trigger, sidebar, sidebarExpanded, currentRoute }
-</script>

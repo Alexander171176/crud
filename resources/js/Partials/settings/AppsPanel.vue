@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'AppsPanel',
+}
+</script>
+
 <template>
   <div class="grow">
 
@@ -367,8 +373,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppsPanel',
-}
-</script>

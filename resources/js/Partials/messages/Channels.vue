@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'Channels',
+    props: ['msgSidebarOpen'],
+}
+</script>
+
 <template>
   <div class="mt-4">
     <div class="text-xs font-semibold text-slate-400 uppercase mb-3">Channels</div>
@@ -36,9 +43,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Channels',
-  props: ['msgSidebarOpen'],
-}
-</script>

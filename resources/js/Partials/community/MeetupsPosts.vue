@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'MeetupsPosts',
+}
+</script>
+
 <template>
   <div class="grid xl:grid-cols-2 gap-6">
 
@@ -369,8 +375,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'MeetupsPosts',
-}
-</script>
+

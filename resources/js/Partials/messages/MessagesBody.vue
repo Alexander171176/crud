@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'MessagesBody',
+}
+</script>
+
 <template>
   <div class="grow px-4 sm:px-6 md:px-5 py-6">
     <!-- Chat msg -->
@@ -117,8 +123,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'MessagesBody',
-}
-</script>
+

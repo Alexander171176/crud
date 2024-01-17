@@ -1,3 +1,56 @@
+<script>
+import { ref } from 'vue'
+import LineChart from '@/Charts/LineChart07.vue'
+
+// Import utilities
+import { tailwindConfig, hexToRGB } from '../../../utils/Utils'
+
+export default {
+    name: 'FintechCard08',
+    components: {
+        LineChart,
+    },
+    setup() {
+        const chartData = ref({
+            labels: ['2010', 'Age 65'],
+            datasets: [
+                // Dark green line
+                {
+                    label: 'Growth 1',
+                    data: [0, 3500000],
+                    borderColor: tailwindConfig().theme.colors.emerald[500],
+                    fill: true,
+                    backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.emerald[500])}, 0.08)`,
+                    borderWidth: 2,
+                    tension: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: tailwindConfig().theme.colors.emerald[500],
+                    clip: 20,
+                },
+                // Light green line
+                {
+                    label: 'Growth 2',
+                    data: [0, 2000000],
+                    borderColor: tailwindConfig().theme.colors.emerald[200],
+                    fill: false,
+                    borderWidth: 2,
+                    tension: 0,
+                    pointRadius: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: tailwindConfig().theme.colors.emerald[200],
+                    clip: 20,
+                },
+            ],
+        })
+
+        return {
+            chartData,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="flex flex-col col-span-full sm:col-span-12 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
     <header class="px-5 py-4 border-b border-slate-100 flex items-center">
@@ -16,55 +69,4 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-import LineChart from '../../Charts/LineChart07.vue'
 
-// Import utilities
-import { tailwindConfig, hexToRGB } from '../../../utils/Utils'
-
-export default {
-  name: 'FintechCard08',
-  components: {
-    LineChart,
-  },
-  setup() {
-    const chartData = ref({
-      labels: ['2010', 'Age 65'],
-      datasets: [
-        // Dark green line
-        {
-          label: 'Growth 1',
-          data: [0, 3500000],
-          borderColor: tailwindConfig().theme.colors.emerald[500],
-          fill: true,
-          backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.emerald[500])}, 0.08)`,
-          borderWidth: 2,
-          tension: 0,
-          pointRadius: 0,
-          pointHoverRadius: 3,
-          pointBackgroundColor: tailwindConfig().theme.colors.emerald[500],
-          clip: 20,
-        },
-        // Light green line
-        {
-          label: 'Growth 2',
-          data: [0, 2000000],
-          borderColor: tailwindConfig().theme.colors.emerald[200],
-          fill: false,
-          borderWidth: 2,
-          tension: 0,
-          pointRadius: 0,
-          pointHoverRadius: 3,
-          pointBackgroundColor: tailwindConfig().theme.colors.emerald[200],
-          clip: 20,
-        },
-      ],
-    })
-
-    return {
-      chartData,
-    }
-  }
-}
-</script>

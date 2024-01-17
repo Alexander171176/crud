@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'WelcomeBanner',
+}
+</script>
+
 <template>
   <div class="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
 
@@ -52,8 +58,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'WelcomeBanner',
-}
-</script>

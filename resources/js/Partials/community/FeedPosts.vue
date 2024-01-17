@@ -1,3 +1,14 @@
+<script>
+import EditMenu from '@/Components/DropdownEditMenu.vue'
+
+export default {
+    name: 'FeedPosts',
+    components: {
+        EditMenu,
+    },
+}
+</script>
+
 <template>
   <!-- Post 1 -->
   <div class="bg-white shadow-md rounded border border-slate-200 p-5">
@@ -309,13 +320,4 @@
   </div>
 </template>
 
-<script>
-import EditMenu from '../../Components/DropdownEditMenu.vue'
 
-export default {
-  name: 'FeedPosts',
-  components: {
-    EditMenu,
-  },
-}
-</script>

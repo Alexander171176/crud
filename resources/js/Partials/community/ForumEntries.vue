@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'ForumEntries',
+}
+</script>
+
 <template>
   <!-- Post 1 -->
   <article class="bg-white shadow-md rounded border border-slate-200 p-5">
@@ -378,8 +384,4 @@
   </article>
 </template>
 
-<script>
-export default {
-  name: 'ForumEntries',
-}
-</script>
+

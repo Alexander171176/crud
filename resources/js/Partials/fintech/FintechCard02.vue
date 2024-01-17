@@ -1,3 +1,14 @@
+<script>
+import EditMenu from '@/Components/DropdownEditMenu.vue'
+
+export default {
+    name: 'FintechCard02',
+    components: {
+        EditMenu,
+    },
+}
+</script>
+
 <template>
   <div class="flex flex-col col-span-full xl:col-span-4 bg-gradient-to-b from-slate-700 to-slate-800 shadow-lg rounded-sm border border-slate-800">
     <header class="px-5 py-4 border-b border-slate-600 flex items-center">
@@ -114,13 +125,4 @@
   </div>
 </template>
 
-<script>
-import EditMenu from '../../Components/DropdownEditMenu.vue'
 
-export default {
-  name: 'FintechCard02',
-  components: {
-    EditMenu,
-  },
-}
-</script>

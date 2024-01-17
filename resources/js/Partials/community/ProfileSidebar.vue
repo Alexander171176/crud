@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'ProfileSidebar',
+    props: ['profileSidebarOpen'],
+}
+</script>
+
 <template>
   <div
     id="profile-sidebar"
@@ -143,9 +150,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProfileSidebar',
-  props: ['profileSidebarOpen'],
-}
-</script>
+

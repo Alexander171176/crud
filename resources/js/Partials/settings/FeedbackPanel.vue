@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'FeedbackPanel',
+}
+</script>
+
 <template>
   <div class="grow">
 
@@ -71,8 +77,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'FeedbackPanel',
-}
-</script>

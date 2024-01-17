@@ -1,3 +1,8 @@
+<script setup>
+import { ref } from 'vue'
+const open = ref(true)
+</script>
+
 <template>
   <div v-show="open" class="fixed bottom-0 right-0 w-full md:bottom-8 md:right-12 md:w-auto z-50">
     <div class="bg-slate-800 border border-transparent dark:border-slate-700 text-slate-50 text-sm p-3 md:rounded shadow-lg flex justify-between">
@@ -12,7 +17,4 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-const open = ref(true)
-</script>
+

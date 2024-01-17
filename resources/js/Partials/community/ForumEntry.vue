@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'ForumEntry',
+}
+</script>
+
 <template>
   <article class="bg-white shadow-md rounded border border-slate-200 p-5">
     <!-- Breadcrumbs -->
@@ -342,8 +348,4 @@
   </article>
 </template>
 
-<script>
-export default {
-  name: 'ForumEntry',
-}
-</script>
+

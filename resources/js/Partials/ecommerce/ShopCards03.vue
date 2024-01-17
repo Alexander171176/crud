@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'ShopCards03',
+}
+</script>
+
 <template>
   <!-- Card 1 -->
   <div class="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-slate-200 overflow-hidden">
@@ -192,8 +198,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ShopCards03',
-}
-</script>
+

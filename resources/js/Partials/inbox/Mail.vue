@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'Mail',
+    props: ['mail'],
+}
+</script>
+
 <template>
   <div class="py-6">
     <!-- Header -->
@@ -27,9 +34,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Mail',
-  props: ['mail'],
-}
-</script>

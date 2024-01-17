@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'FintechIntro',
+}
+</script>
+
 <template>
   <div class="flex flex-col col-span-full bg-white shadow-lg rounded-sm border border-slate-200">
     <div class="px-5 py-6">
@@ -52,8 +58,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'FintechIntro',
-}
-</script>
+

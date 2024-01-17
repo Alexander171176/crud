@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'SettingsSidebar',
+}
+</script>
+
 <template>
   <div class="flex flex-nowrap overflow-x-scroll no-scrollbar md:block md:overflow-auto px-3 py-6 border-b md:border-b-0 md:border-r border-slate-200 min-w-60 md:space-y-3">
     <!-- Group 1 -->
@@ -69,14 +75,9 @@
               <span class="text-sm font-medium text-slate-600" :class="isExactActive ? 'text-indigo-500' : 'hover:text-slate-700'">Give Feedback</span>
             </a>
           </li>
-        </router-link>        
+        </router-link>
       </ul>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SettingsSidebar',
-}
-</script>

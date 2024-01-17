@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'JobListItem',
+    props: ['item'],
+}
+</script>
+
 <template>
   <div class="shadow-lg rounded-sm border px-5 py-4" :class="item.type === 'Featured' ? 'bg-amber-50 border-amber-300' : 'bg-white border-slate-200'">
       <div class="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2">
@@ -26,9 +33,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'JobListItem',
-  props: ['item'],
-}
-</script>

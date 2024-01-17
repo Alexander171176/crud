@@ -1,3 +1,51 @@
+<script>
+import { ref } from 'vue'
+import BarChart from '@/Charts/BarChart06.vue'
+
+// Import utilities
+import { tailwindConfig } from '../../../utils/Utils'
+
+export default {
+    name: 'FintechCard04',
+    components: {
+        BarChart,
+    },
+    setup() {
+        const chartData = ref({
+            labels: [
+                '02-01-2021', '03-01-2021', '04-01-2021', '05-01-2021',
+            ],
+            datasets: [
+                // Indigo bars
+                {
+                    label: 'Inflow',
+                    data: [
+                        4100, 1900, 2700, 3900,
+                    ],
+                    backgroundColor: tailwindConfig().theme.colors.indigo[500],
+                    hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+                    categoryPercentage: 0.66,
+                },
+                // Gray bars
+                {
+                    label: 'Outflow',
+                    data: [
+                        2000, 1000, 1100, 2600,
+                    ],
+                    backgroundColor: tailwindConfig().theme.colors.slate[300],
+                    hoverBackgroundColor: tailwindConfig().theme.colors.slate[400],
+                    categoryPercentage: 0.66,
+                },
+            ],
+        })
+
+        return {
+            chartData,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
     <header class="px-5 py-4 border-b border-slate-100">
@@ -9,50 +57,4 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-import BarChart from '../../Charts/BarChart06.vue'
 
-// Import utilities
-import { tailwindConfig } from '../../../utils/Utils'
-
-export default {
-  name: 'FintechCard04',
-  components: {
-    BarChart,
-  },
-  setup() {
-    const chartData = ref({
-      labels: [
-        '02-01-2021', '03-01-2021', '04-01-2021', '05-01-2021',
-      ],
-      datasets: [
-        // Indigo bars
-        {
-          label: 'Inflow',
-          data: [
-            4100, 1900, 2700, 3900,
-          ],
-          backgroundColor: tailwindConfig().theme.colors.indigo[500],
-          hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
-          categoryPercentage: 0.66,
-        },
-        // Gray bars
-        {
-          label: 'Outflow',
-          data: [
-            2000, 1000, 1100, 2600,
-          ],
-          backgroundColor: tailwindConfig().theme.colors.slate[300],
-          hoverBackgroundColor: tailwindConfig().theme.colors.slate[400],
-          categoryPercentage: 0.66,
-        },
-      ],
-    })
-
-    return {
-      chartData,
-    }
-  }
-}
-</script>

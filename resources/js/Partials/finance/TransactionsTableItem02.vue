@@ -1,3 +1,52 @@
+<script>
+import { computed } from 'vue'
+
+export default {
+    name: 'TransactionsTableItem02',
+    props: ['transaction', 'value', 'selected'],
+    setup(props, context) {
+        const checked = computed(() => props.selected.includes(props.value))
+
+        function check() {
+            let updatedSelected = [...props.selected]
+            if (this.checked) {
+                updatedSelected.splice(updatedSelected.indexOf(props.value), 1)
+            } else {
+                updatedSelected.push(props.value)
+            }
+            context.emit('update:selected', updatedSelected)
+        }
+
+        const statusColor = (status) => {
+            switch (status) {
+                case 'Completed':
+                    return 'bg-emerald-100 text-emerald-600'
+                case 'Canceled':
+                    return 'bg-rose-100 text-rose-500'
+                default:
+                    return 'bg-slate-100 text-slate-500'
+            }
+        }
+
+        const amountColor = (amount) => {
+            switch (amount.charAt(0)) {
+                case '+':
+                    return 'text-emerald-500'
+                default:
+                    return 'text-slate-700'
+            }
+        }
+
+        return {
+            check,
+            checked,
+            statusColor,
+            amountColor,
+        }
+    },
+}
+</script>
+
 <template>
   <tr class="cursor-pointer">
     <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
@@ -26,55 +75,7 @@
     </td>
     <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
       <div class="text-right font-medium" :class="amountColor(transaction.amount)">{{transaction.amount}}</div>
-    </td>    
-  </tr>  
+    </td>
+  </tr>
 </template>
 
-<script>
-import { computed } from 'vue'
-
-export default {
-  name: 'TransactionsTableItem02',
-  props: ['transaction', 'value', 'selected'],
-  setup(props, context) {
-    const checked = computed(() => props.selected.includes(props.value))
-
-    function check() {
-      let updatedSelected = [...props.selected]
-      if (this.checked) {
-        updatedSelected.splice(updatedSelected.indexOf(props.value), 1)
-      } else {
-        updatedSelected.push(props.value)
-      }
-      context.emit('update:selected', updatedSelected)
-    }
-
-    const statusColor = (status) => {
-      switch (status) {
-        case 'Completed':
-          return 'bg-emerald-100 text-emerald-600'
-        case 'Canceled':
-          return 'bg-rose-100 text-rose-500'
-        default:
-          return 'bg-slate-100 text-slate-500'
-      }
-    }
-    
-    const amountColor = (amount) => {
-      switch (amount.charAt(0)) {
-        case '+':
-          return 'text-emerald-500'
-        default:
-          return 'text-slate-700'
-      }
-    }    
-
-    return {
-      check,
-      checked,
-      statusColor,
-      amountColor,
-    }
-  },
-}
-</script>

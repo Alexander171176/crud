@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'MessagesFooter',
+}
+</script>
+
 <template>
   <div class="sticky bottom-0">
     <div class="flex items-center justify-between bg-white border-t border-slate-200 px-4 sm:px-6 md:px-5 h-16">
@@ -20,8 +26,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'MessagesFooter',
-}
-</script>

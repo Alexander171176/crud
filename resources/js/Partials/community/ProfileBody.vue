@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'ProfileBody',
+    props: ['profileSidebarOpen'],
+}
+</script>
+
 <template>
   <div class="grow flex flex-col md:translate-x-0 transition-transform duration-300 ease-in-out" :class="profileSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'">
 
@@ -322,9 +329,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProfileBody',
-  props: ['profileSidebarOpen'],
-}
-</script>
+

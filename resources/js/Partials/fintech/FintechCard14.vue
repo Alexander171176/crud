@@ -1,3 +1,112 @@
+<script>
+import { ref } from 'vue'
+import LineChart from '@/Charts/LineChart09.vue'
+
+// Import utilities
+import { tailwindConfig } from '../../../utils/Utils'
+
+export default {
+    name: 'FintechCard14',
+    components: {
+        LineChart,
+    },
+    setup() {
+        const miniCharts = ref([
+            // Twitter
+            {
+                data: [
+                    540, 466, 540, 466, 385, 432, 334,
+                    334, 289, 289, 200, 289, 222, 289,
+                    289, 403, 554, 304, 289, 270, 134,
+                    270, 829, 644, 688, 664,
+                ],
+                growth: true,
+            },
+            // Facebook
+            {
+                data: [
+                    245, 288, 332, 404, 404, 314, 314,
+                    314, 314, 314, 234, 314, 234, 234,
+                    314, 314, 314, 388, 314, 202, 202,
+                    202, 202, 514, 720, 642,
+                ],
+                growth: true,
+            },
+            // Google
+            {
+                data: [
+                    732, 610, 610, 504, 504, 504, 349,
+                    349, 504, 342, 504, 610, 391, 192,
+                    154, 273, 191, 191, 126, 263, 349,
+                    252, 323, 322, 270, 232,
+                ],
+                growth: false,
+            },
+            // Apple
+            {
+                data: [
+                    222, 222, 226, 271, 365, 365, 238,
+                    324, 288, 206, 324, 324, 500, 409,
+                    409, 273, 232, 273, 500, 570, 767,
+                    808, 685, 767, 685, 685,
+                ],
+                growth: true,
+            },
+            // Coinbase
+            {
+                data: [
+                    632, 510, 610, 404, 504, 404, 449,
+                    349, 404, 542, 404, 410, 491, 392,
+                    254, 273, 291, 191, 226, 363, 449,
+                    252, 223, 222, 170, 132,
+                ],
+                growth: false,
+            },
+        ])
+
+        const chartData = ref([])
+
+        const buildChartData = (chart) => {
+            var obj = {
+                labels: [
+                    '12-01-2020', '01-01-2021', '02-01-2021',
+                    '03-01-2021', '04-01-2021', '05-01-2021',
+                    '06-01-2021', '07-01-2021', '08-01-2021',
+                    '09-01-2021', '10-01-2021', '11-01-2021',
+                    '12-01-2021', '01-01-2022', '02-01-2022',
+                    '03-01-2022', '04-01-2022', '05-01-2022',
+                    '06-01-2022', '07-01-2022', '08-01-2022',
+                    '09-01-2022', '10-01-2022', '11-01-2022',
+                    '12-01-2022', '01-01-2023',
+                ],
+                datasets: [
+                    // Line
+                    {
+                        data: chart.data,
+                        borderColor: chart.growth ? tailwindConfig().theme.colors.emerald[500] : tailwindConfig().theme.colors.rose[500],
+                        borderWidth: 2,
+                        tension: 0,
+                        pointRadius: 0,
+                        pointHoverRadius: 3,
+                        pointBackgroundColor: chart.growth ? tailwindConfig().theme.colors.emerald[500] : tailwindConfig().theme.colors.rose[500],
+                        clip: 20,
+                    },
+                ],
+            }
+            return obj
+        }
+
+        miniCharts.value.map((miniChart) => {
+            chartData.value.push(buildChartData(miniChart))
+        })
+
+        return {
+            chartData,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="col-span-full bg-white shadow-lg rounded-sm border border-slate-200">
     <header class="px-5 py-4 border-b border-slate-100">
@@ -198,111 +307,4 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-import LineChart from '../../Charts/LineChart09.vue'
 
-// Import utilities
-import { tailwindConfig } from '../../../utils/Utils'
-
-export default {
-  name: 'FintechCard14',
-  components: {
-    LineChart,
-  },
-  setup() {
-    const miniCharts = ref([
-      // Twitter
-      {
-        data: [
-          540, 466, 540, 466, 385, 432, 334,
-          334, 289, 289, 200, 289, 222, 289,
-          289, 403, 554, 304, 289, 270, 134,
-          270, 829, 644, 688, 664,
-        ],
-        growth: true,
-      },
-      // Facebook
-      {
-        data: [
-          245, 288, 332, 404, 404, 314, 314,
-          314, 314, 314, 234, 314, 234, 234,
-          314, 314, 314, 388, 314, 202, 202,
-          202, 202, 514, 720, 642,
-        ],
-        growth: true,
-      },
-      // Google
-      {
-        data: [
-          732, 610, 610, 504, 504, 504, 349,
-          349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349,
-          252, 323, 322, 270, 232,
-        ],
-        growth: false,
-      },
-      // Apple
-      {
-        data: [
-          222, 222, 226, 271, 365, 365, 238,
-          324, 288, 206, 324, 324, 500, 409,
-          409, 273, 232, 273, 500, 570, 767,
-          808, 685, 767, 685, 685,
-        ],
-        growth: true,
-      },
-      // Coinbase
-      {
-        data: [
-          632, 510, 610, 404, 504, 404, 449,
-          349, 404, 542, 404, 410, 491, 392,
-          254, 273, 291, 191, 226, 363, 449,
-          252, 223, 222, 170, 132,
-        ],
-        growth: false,
-      },
-    ])
-
-    const chartData = ref([])
-
-    const buildChartData = (chart) => {
-      var obj = {
-        labels: [
-          '12-01-2020', '01-01-2021', '02-01-2021',
-          '03-01-2021', '04-01-2021', '05-01-2021',
-          '06-01-2021', '07-01-2021', '08-01-2021',
-          '09-01-2021', '10-01-2021', '11-01-2021',
-          '12-01-2021', '01-01-2022', '02-01-2022',
-          '03-01-2022', '04-01-2022', '05-01-2022',
-          '06-01-2022', '07-01-2022', '08-01-2022',
-          '09-01-2022', '10-01-2022', '11-01-2022',
-          '12-01-2022', '01-01-2023',
-        ],
-        datasets: [
-          // Line
-          {
-            data: chart.data,
-            borderColor: chart.growth ? tailwindConfig().theme.colors.emerald[500] : tailwindConfig().theme.colors.rose[500],
-            borderWidth: 2,
-            tension: 0,
-            pointRadius: 0,
-            pointHoverRadius: 3,
-            pointBackgroundColor: chart.growth ? tailwindConfig().theme.colors.emerald[500] : tailwindConfig().theme.colors.rose[500],
-            clip: 20,
-          },
-        ],
-      }
-      return obj
-    }
-
-    miniCharts.value.map((miniChart) => {
-      chartData.value.push(buildChartData(miniChart))
-    })
-
-    return {
-      chartData,
-    }
-  }
-}
-</script>

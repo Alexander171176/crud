@@ -1,3 +1,30 @@
+<script>
+import { computed } from 'vue'
+
+export default {
+    name: 'CustomersTableItem',
+    props: ['customer', 'value', 'selected'],
+    setup(props, context) {
+        const checked = computed(() => props.selected.includes(props.value))
+
+        function check() {
+            let updatedSelected = [...props.selected]
+            if (this.checked) {
+                updatedSelected.splice(updatedSelected.indexOf(props.value), 1)
+            } else {
+                updatedSelected.push(props.value)
+            }
+            context.emit('update:selected', updatedSelected)
+        }
+
+        return {
+            check,
+            checked,
+        }
+    },
+}
+</script>
+
 <template>
   <tr>
     <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
@@ -54,32 +81,6 @@
         </svg>
       </button>
     </td>
-  </tr>  
+  </tr>
 </template>
 
-<script>
-import { computed } from 'vue'
-
-export default {
-  name: 'CustomersTableItem',
-  props: ['customer', 'value', 'selected'],
-  setup(props, context) {
-    const checked = computed(() => props.selected.includes(props.value))
-
-    function check() {
-      let updatedSelected = [...props.selected]
-      if (this.checked) {
-        updatedSelected.splice(updatedSelected.indexOf(props.value), 1)
-      } else {
-        updatedSelected.push(props.value)
-      }
-      context.emit('update:selected', updatedSelected)
-    }
-
-    return {
-      check,
-      checked,
-    }
-  },
-}
-</script>

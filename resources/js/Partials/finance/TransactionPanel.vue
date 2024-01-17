@@ -1,3 +1,49 @@
+<script>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+export default {
+    name: 'TransactionPanel',
+    props: ['transactionPanelOpen'],
+    emits: ['close-transactionpanel'],
+    setup(props, { emit }) {
+
+        const panelContent = ref(null)
+        const closeBtn = ref(null)
+
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (
+                !props.transactionPanelOpen ||
+                panelContent.value.contains(target) ||
+                closeBtn.value.contains(target)
+            ) return
+            emit('close-transactionpanel')
+        }
+
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!props.transactionPanelOpen || keyCode !== 27) return
+            emit('close-transactionpanel')
+        }
+
+        onMounted(() => {
+            document.addEventListener('click', clickHandler)
+            document.addEventListener('keydown', keyHandler)
+        })
+
+        onUnmounted(() => {
+            document.removeEventListener('click', clickHandler)
+            document.removeEventListener('keydown', keyHandler)
+        })
+
+        return {
+            panelContent,
+            closeBtn,
+        }
+    }
+}
+</script>
+
 <template>
   <div
     ref="panelContent"
@@ -109,48 +155,4 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted, onUnmounted } from 'vue'
 
-export default {
-  name: 'TransactionPanel',
-  props: ['transactionPanelOpen'],
-  emits: ['close-transactionpanel'],
-  setup(props, { emit }) {
-
-    const panelContent = ref(null)
-    const closeBtn = ref(null)
-
-    // close on click outside
-    const clickHandler = ({ target }) => {
-      if (
-        !props.transactionPanelOpen ||
-        panelContent.value.contains(target) ||
-        closeBtn.value.contains(target)
-      ) return
-      emit('close-transactionpanel')
-    }
-
-    // close if the esc key is pressed
-    const keyHandler = ({ keyCode }) => {
-      if (!props.transactionPanelOpen || keyCode !== 27) return
-      emit('close-transactionpanel')
-    }
-
-    onMounted(() => {
-      document.addEventListener('click', clickHandler)
-      document.addEventListener('keydown', keyHandler)
-    })
-
-    onUnmounted(() => {
-      document.removeEventListener('click', clickHandler)
-      document.removeEventListener('keydown', keyHandler)
-    })
-
-    return {
-      panelContent,
-      closeBtn,
-    }
-  }
-}
-</script>

@@ -1,3 +1,21 @@
+<script>
+import { ref } from 'vue'
+
+export default {
+    name: 'JobSidebar',
+    setup() {
+
+        const companySetting = ref('On')
+        const immigrationSetting = ref('Off')
+
+        return {
+            companySetting,
+            immigrationSetting,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="space-y-8">
     <!-- Alert -->
@@ -135,20 +153,3 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-
-export default {
-  name: 'JobSidebar',
-  setup() {
-
-  const companySetting = ref('On')
-  const immigrationSetting = ref('Off')
-
-    return {
-      companySetting,
-      immigrationSetting,
-    }
-  }  
-}
-</script>

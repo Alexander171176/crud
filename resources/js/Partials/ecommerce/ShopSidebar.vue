@@ -1,3 +1,9 @@
+<script>
+export default {
+    name: 'ShopSidebar',
+}
+</script>
+
 <template>
   <div>
     <div class="bg-white shadow-lg rounded-sm border border-slate-200 p-5 min-w-60">
@@ -174,8 +180,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ShopSidebar',
-}
-</script>

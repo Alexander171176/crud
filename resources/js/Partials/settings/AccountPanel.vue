@@ -1,3 +1,19 @@
+<script>
+import { ref } from 'vue'
+
+export default {
+    name: 'AccountPanel',
+    setup() {
+
+        const sync = ref('Off')
+
+        return {
+            sync,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="grow">
     <!-- Panel body -->
@@ -79,18 +95,4 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
 
-export default {
-  name: 'AccountPanel',
-  setup() {
-
-  const sync = ref('Off')
-
-    return {
-      sync,
-    }
-  }
-}
-</script>

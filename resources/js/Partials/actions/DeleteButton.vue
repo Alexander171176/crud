@@ -1,3 +1,10 @@
+<script>
+export default {
+    name: 'DeleteButton',
+    props: ['selectedItems'],
+}
+</script>
+
 <template>
   <div :class="selectedItems.length < 1 && 'hidden'">
     <div class="flex items-center">
@@ -7,9 +14,3 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'DeleteButton',
-  props: ['selectedItems'],
-}
-</script>

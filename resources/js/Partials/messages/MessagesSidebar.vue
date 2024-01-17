@@ -1,3 +1,19 @@
+<script>
+import ChannelMenu from './ChannelMenu.vue'
+import DirectMessages from './DirectMessages.vue'
+import Channels from './Channels.vue'
+
+export default {
+    name: 'MessagesSidebar',
+    props: ['msgSidebarOpen'],
+    components: {
+        ChannelMenu,
+        DirectMessages,
+        Channels
+    },
+}
+</script>
+
 <template>
   <div
     id="messages-sidebar"
@@ -47,18 +63,3 @@
   </div>
 </template>
 
-<script>
-import ChannelMenu from './ChannelMenu.vue'
-import DirectMessages from './DirectMessages.vue'
-import Channels from './Channels.vue'
-
-export default {
-  name: 'MessagesSidebar',
-  props: ['msgSidebarOpen'],
-  components: {
-    ChannelMenu,
-    DirectMessages,
-    Channels
-  },
-}
-</script>

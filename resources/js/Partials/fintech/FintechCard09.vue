@@ -1,3 +1,46 @@
+<script>
+import { ref } from 'vue'
+import PieChart from '@/Charts/PieChart.vue'
+
+// Import utilities
+import { tailwindConfig } from '../../../utils/Utils'
+
+export default {
+    name: 'FintechCard09',
+    components: {
+        PieChart,
+    },
+    setup() {
+        const chartData = ref({
+            labels: ['Cash', 'Commodities', 'Bonds', 'Stock'],
+            datasets: [
+                {
+                    label: 'Sessions By Device',
+                    data: [12, 13, 10, 65],
+                    backgroundColor: [
+                        tailwindConfig().theme.colors.emerald[400],
+                        tailwindConfig().theme.colors.amber[400],
+                        tailwindConfig().theme.colors.sky[400],
+                        tailwindConfig().theme.colors.indigo[500],
+                    ],
+                    hoverBackgroundColor: [
+                        tailwindConfig().theme.colors.emerald[500],
+                        tailwindConfig().theme.colors.amber[500],
+                        tailwindConfig().theme.colors.sky[500],
+                        tailwindConfig().theme.colors.indigo[600],
+                    ],
+                    borderWidth: 0,
+                },
+            ],
+        })
+
+        return {
+            chartData,
+        }
+    }
+}
+</script>
+
 <template>
   <div class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
     <header className="px-5 py-4 border-b border-slate-100 flex items-center">
@@ -13,45 +56,4 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-import PieChart from '../../Charts/PieChart.vue'
 
-// Import utilities
-import { tailwindConfig } from '../../../utils/Utils'
-
-export default {
-  name: 'FintechCard09',
-  components: {
-    PieChart,
-  },
-  setup() {
-    const chartData = ref({
-      labels: ['Cash', 'Commodities', 'Bonds', 'Stock'],
-      datasets: [
-        {
-          label: 'Sessions By Device',
-          data: [12, 13, 10, 65],
-          backgroundColor: [
-            tailwindConfig().theme.colors.emerald[400],
-            tailwindConfig().theme.colors.amber[400],
-            tailwindConfig().theme.colors.sky[400],
-            tailwindConfig().theme.colors.indigo[500],
-          ],
-          hoverBackgroundColor: [
-            tailwindConfig().theme.colors.emerald[500],
-            tailwindConfig().theme.colors.amber[500],
-            tailwindConfig().theme.colors.sky[500],
-            tailwindConfig().theme.colors.indigo[600],
-          ],
-          borderWidth: 0,
-        },
-      ],
-    })
-
-    return {
-      chartData,
-    }
-  }
-}
-</script>

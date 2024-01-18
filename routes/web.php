@@ -122,16 +122,22 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
     Route::get('/onboarding-02', [OnboardingTwoController::class, 'index'])->name('onboarding-02');// Маршрут для Onboarding02
     Route::get('/onboarding-03', [OnboardingThreeController::class, 'index'])->name('onboarding-03');// Маршрут для Onboarding03
     Route::get('/onboarding-04', [OnboardingFourController::class, 'index'])->name('onboarding-04');// Маршрут для Onboarding04
-    Route::get('/ecommerce/customers', [CustomersController::class, 'index'])->name('customers');// Маршрут для Customers
-    Route::get('/ecommerce/orders', [OrdersController::class, 'index'])->name('orders');// Маршрут для Orders
-    Route::get('/ecommerce/invoices', [InvoicesController::class, 'index'])->name('invoices');// Маршрут для Invoices
-    Route::get('/ecommerce/shop', [ShopOneController::class, 'index'])->name('shop');// Маршрут для Shop
-    Route::get('/ecommerce/shop2', [ShopTwoController::class, 'index'])->name('shop2');// Маршрут для Shop2
-    Route::get('/ecommerce/product', [ProductController::class, 'index'])->name('product');// Маршрут для Product
-    Route::get('/ecommerce/cart', [CartOneController::class, 'index'])->name('cart');// Маршрут для Cart
-    Route::get('/ecommerce/cart-2', [CartTwoController::class, 'index'])->name('cart2');// Маршрут для Cart2
-    Route::get('/ecommerce/cart-3', [CartThreeController::class, 'index'])->name('cart3');// Маршрут для Cart3
-    Route::get('/ecommerce/pay', [PayController::class, 'index'])->name('pay');// Маршрут для Pay
+
+    // Маршруты для группы 'ecommerce'
+    Route::group(['prefix' => 'ecommerce'], function () {
+        Route::get('/customers', [CustomersController::class, 'index'])->name('customers');// Маршрут для Customers
+        Route::get('/orders', [OrdersController::class, 'index'])->name('orders');// Маршрут для Orders
+        Route::get('/invoices', [InvoicesController::class, 'index'])->name('invoices');// Маршрут для Invoices
+        Route::get('/shop', [ShopOneController::class, 'index'])->name('shop');// Маршрут для Shop
+        Route::get('/shop2', [ShopTwoController::class, 'index'])->name('shop2');// Маршрут для Shop2
+        Route::get('/product', [ProductController::class, 'index'])->name('product');// Маршрут для Product
+        Route::get('/cart', [CartOneController::class, 'index'])->name('cart');// Маршрут для Cart
+        Route::get('/cart-2', [CartTwoController::class, 'index'])->name('cart2');// Маршрут для Cart2
+        Route::get('/cart-3', [CartThreeController::class, 'index'])->name('cart3');// Маршрут для Cart3
+        Route::get('/pay', [PayController::class, 'index'])->name('pay');// Маршрут для Pay
+        // Другие маршруты для 'ecommerce'...
+    });
+
     Route::get('/community/users-tabs', [UsersTabsController::class, 'index'])->name('users-tabs');// Маршрут для UsersTabs
     Route::get('/community/users-tiles', [UsersTilesController::class, 'index'])->name('users-tiles');// Маршрут для UsersTiles
     Route::get('/community/profile', [App\Http\Controllers\Admin\Community\ProfileController::class, 'index'])->name('profile');// Маршрут для Profile

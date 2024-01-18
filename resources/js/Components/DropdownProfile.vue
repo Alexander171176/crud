@@ -33,7 +33,7 @@
                     @focusin="dropdownOpen = true"
                     @focusout="dropdownOpen = false"
                 >
-                    <router-link class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" to="/dashboard/settings/account" @click="dropdownOpen = false">
+                    <router-link class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" :to="{ name: 'account' }" method="get" as="button" @click.prevent="$inertia.get(route('account'))">
                         Аккаунт
                     </router-link>
                     <router-link class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" :to="{ name: 'logout' }" method="post" as="button" @click.prevent="$inertia.post(route('logout'))">

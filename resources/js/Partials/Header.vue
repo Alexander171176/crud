@@ -1,14 +1,29 @@
-<script setup>
-import {ref} from 'vue';
-import SearchModal from '@/Components/ModalSearch.vue';
-import Notifications from '@/Components/DropdownNotifications.vue';
-import Help from '@/Components/DropdownHelp.vue';
+<script>
+import { ref } from 'vue'
+
+import SearchModal from '@/Components/ModalSearch.vue'
+import Notifications from '@/Components/DropdownNotifications.vue'
+import Help from '@/Components/DropdownHelp.vue'
 import ThemeToggle from '@/Components/ThemeToggle.vue';
-import UserMenu from '@/Components/DropdownProfile.vue';
+import UserMenu from '@/Components/DropdownProfile.vue'
 
-const searchModalOpen = ref(false);
-
-const sidebarOpen = ref(false);
+export default {
+    name: 'Header',
+    props: ['sidebarOpen'],
+    components: {
+        SearchModal,
+        Notifications,
+        Help,
+        ThemeToggle,
+        UserMenu,
+    },
+    setup() {
+        const searchModalOpen = ref(false)
+        return {
+            searchModalOpen,
+        }
+    }
+}
 </script>
 
 <template>

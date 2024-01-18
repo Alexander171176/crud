@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\Inbox\InboxController;
 use App\Http\Controllers\Admin\Job\CompanyProfileController;
 use App\Http\Controllers\Admin\Job\JobListingController;
 use App\Http\Controllers\Admin\Job\JobPostController;
+use App\Http\Controllers\Admin\LogoutController;
 use App\Http\Controllers\Admin\Messages\MessagesController;
 use App\Http\Controllers\Admin\Onboarding\OnboardingFourController;
 use App\Http\Controllers\Admin\Onboarding\OnboardingOneController;
@@ -79,6 +80,8 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');// Маршрут для Logout
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

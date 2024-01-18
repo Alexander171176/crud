@@ -2,7 +2,7 @@
   <div class="relative inline-flex">
     <button
       ref="trigger"
-      class="btn bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
+      class="btn bg-white dark:bg-slate-800 border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600 text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
       aria-haspopup="true"
       @click.prevent="dropdownOpen = !dropdownOpen"
       :aria-expanded="dropdownOpen"
@@ -70,7 +70,7 @@
                 <button class="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white" @click="dropdownOpen = false" @focusout="dropdownOpen = false">Apply</button>
               </li>
             </ul>
-          </div>          
+          </div>
         </div>
       </div>
     </transition>

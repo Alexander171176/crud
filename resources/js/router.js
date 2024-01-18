@@ -402,7 +402,7 @@ const routes = [
     },
     {
         path: '/logout',
-        component: () => import('./Components/LogoutComponent.vue'),
+        component: () => import('./Pages/LogoutComponent.vue'),
         name: 'logout',
         meta: { middleware: ['auth', 'verified'] },
     },

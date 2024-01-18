@@ -2,7 +2,7 @@
   <div class="relative inline-flex">
     <button
       ref="trigger"
-      class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full"
+      class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600/80 rounded-full"
       :class="{ 'bg-slate-200': dropdownOpen }"
       aria-haspopup="true"
       @click.prevent="dropdownOpen = !dropdownOpen"
@@ -54,7 +54,7 @@
             </router-link>
           </li>
         </ul>
-      </div> 
+      </div>
     </transition>
   </div>
 </template>

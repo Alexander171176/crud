@@ -111,10 +111,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
 
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');// Маршрут для Analytics
     Route::get('/fintech', [FintechController::class, 'index'])->name('fintech');// Маршрут для Fintech
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');// Маршрут для Calendar
-    Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');// Маршрут для Campaigns
-    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox');// Маршрут для Inbox
-    Route::get('/messages', [MessagesController::class, 'index'])->name('messages');// Маршрут для Messages
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');// Маршрут для Calendar
+    Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns.index');// Маршрут для Campaigns
+    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');// Маршрут для Inbox
+    Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');// Маршрут для Messages
     Route::get('/signin', [SigninController::class, 'index'])->name('signin');// Маршрут для Signin
     Route::get('/signup', [SignupController::class, 'index'])->name('signup');// Маршрут для Signup
     Route::get('/reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');// Маршрут для ResetPassword
@@ -146,26 +146,32 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
     Route::get('/community/forum-post', [ForumPostController::class, 'index'])->name('forum-post');// Маршрут для ForumPost
     Route::get('/community/meetups', [MeetupsController::class, 'index'])->name('meetups');// Маршрут для Meetups
     Route::get('/community/meetups-post', [MeetupsPostController::class, 'index'])->name('meetups-post');// Маршрут для MeetupsPost
+
     Route::get('/finance/cards', [CreditCardsController::class, 'index'])->name('cards');// Маршрут для CreditCards
     Route::get('/finance/transactions', [TransactionsController::class, 'index'])->name('transactions');// Маршрут для Transactions
     Route::get('/finance/transaction-details', [TransactionDetailsController::class, 'index'])->name('transaction-details');// Маршрут для TransactionDetails
+
     Route::get('/job/job-listing', [JobListingController::class, 'index'])->name('job-listing');// Маршрут для JobListing
     Route::get('/job/job-post', [JobPostController::class, 'index'])->name('job-post');// Маршрут для JobPost
     Route::get('/job/company-profile', [CompanyProfileController::class, 'index'])->name('company-profile');// Маршрут для CompanyProfile
-    Route::get('/tasks/kanban', [TasksKanbanController::class, 'index'])->name('tasks-kanban');// Маршрут для TasksKanban
+
+    Route::get('/tasks/kanban', [TasksKanbanController::class, 'index'])->name('tasks-kanban.index');// Маршрут для TasksKanban
     Route::get('/tasks/list', [TasksListController::class, 'index'])->name('tasks-list');// Маршрут для TasksList
+
     Route::get('/settings/account', [AccountController::class, 'index'])->name('account');// Маршрут для Account
     Route::get('/settings/notifications', [NotificationsController::class, 'index'])->name('notifications');// Маршрут для Notifications
     Route::get('/settings/apps', [AppsController::class, 'index'])->name('apps');// Маршрут для Apps
     Route::get('/settings/plans', [PlansController::class, 'index'])->name('plans');// Маршрут для Plans
     Route::get('/settings/billing', [BillingController::class, 'index'])->name('billing');// Маршрут для Billing
     Route::get('/settings/feedback', [FeedbackController::class, 'index'])->name('feedback');// Маршрут для Feedback
+
     Route::get('/utility/changelog', [ChangelogController::class, 'index'])->name('changelog');// Маршрут для Changelog
     Route::get('/utility/roadmap', [RoadmapController::class, 'index'])->name('roadmap');// Маршрут для Roadmap
     Route::get('/utility/faqs', [FaqsController::class, 'index'])->name('faqs');// Маршрут для Faqs
     Route::get('/utility/empty-state', [EmptyStateController::class, 'index'])->name('empty-state');// Маршрут для EmptyState
     Route::get('/utility/404', [PageNotFoundController::class, 'index'])->name('page-not-found');// Маршрут для PageNotFound
     Route::get('/utility/knowledge-base', [KnowledgeBaseController::class, 'index'])->name('knowledge-base');// Маршрут для KnowledgeBase
+
     Route::get('/component/button', [ButtonPageController::class, 'index'])->name('button-page');// Маршрут для ButtonPage
     Route::get('/component/form', [FormPageController::class, 'index'])->name('form-page');// Маршрут для FormPage
     Route::get('/component/dropdown', [DropdownPageController::class, 'index'])->name('dropdown-page');// Маршрут для DropdownPage

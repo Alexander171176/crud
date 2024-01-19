@@ -1,7 +1,7 @@
 <script>
 import { ref } from 'vue'
-import Sidebar from '@/Partials/Sidebar.vue'
-import Header from '@/Partials/Header.vue'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import { Head } from '@inertiajs/vue3'
 import SearchForm from '@/Components/SearchForm.vue'
 import FilterButton from '@/Components/DropdownFilter.vue'
 import CampaignsCard from '@/Partials/campaigns/CampaignsCard.vue'
@@ -23,8 +23,8 @@ import Image12 from '../../images/user-28-12.jpg'
 export default {
     name: 'Campaigns',
     components: {
-        Sidebar,
-        Header,
+        Head,
+        AuthenticatedLayout,
         SearchForm,
         FilterButton,
         CampaignsCard,
@@ -364,18 +364,8 @@ export default {
 </script>
 
 <template>
-  <div class="flex h-screen overflow-hidden">
-
-    <!-- Sidebar -->
-    <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
-
-    <!-- Content area -->
-    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-
-      <!-- Site header -->
-      <Header :sidebarOpen="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
-
-      <main>
+    <Head title="Campaigns" />
+    <AuthenticatedLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
           <!-- Page header -->
@@ -418,10 +408,6 @@ export default {
           </div>
 
         </div>
-      </main>
-
-    </div>
-
-  </div>
+    </AuthenticatedLayout>
 </template>
 

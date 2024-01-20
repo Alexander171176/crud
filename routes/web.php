@@ -138,53 +138,81 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], fu
         // Другие маршруты для 'ecommerce'...
     });
 
-    Route::get('/community/users-tabs', [UsersTabsController::class, 'index'])->name('users-tabs');// Маршрут для UsersTabs
-    Route::get('/community/users-tiles', [UsersTilesController::class, 'index'])->name('users-tiles');// Маршрут для UsersTiles
-    Route::get('/community/profile', [App\Http\Controllers\Admin\Community\ProfileController::class, 'index'])->name('profile');// Маршрут для Profile
-    Route::get('/community/feed', [FeedController::class, 'index'])->name('feed');// Маршрут для Feed
-    Route::get('/community/forum', [ForumController::class, 'index'])->name('forum');// Маршрут для Forum
-    Route::get('/community/forum-post', [ForumPostController::class, 'index'])->name('forum-post');// Маршрут для ForumPost
-    Route::get('/community/meetups', [MeetupsController::class, 'index'])->name('meetups');// Маршрут для Meetups
-    Route::get('/community/meetups-post', [MeetupsPostController::class, 'index'])->name('meetups-post');// Маршрут для MeetupsPost
+    // Маршруты для группы 'community'
+    Route::group(['prefix' => 'community'], function () {
+        Route::get('/users-tabs', [UsersTabsController::class, 'index'])->name('users-tabs');// Маршрут для UsersTabs
+        Route::get('/users-tiles', [UsersTilesController::class, 'index'])->name('users-tiles');// Маршрут для UsersTiles
+        Route::get('/profile', [App\Http\Controllers\Admin\Community\ProfileController::class, 'index'])->name('profile');// Маршрут для Profile
+        Route::get('/feed', [FeedController::class, 'index'])->name('feed');// Маршрут для Feed
+        Route::get('/forum', [ForumController::class, 'index'])->name('forum');// Маршрут для Forum
+        Route::get('/forum-post', [ForumPostController::class, 'index'])->name('forum-post');// Маршрут для ForumPost
+        Route::get('/meetups', [MeetupsController::class, 'index'])->name('meetups');// Маршрут для Meetups
+        Route::get('/meetups-post', [MeetupsPostController::class, 'index'])->name('meetups-post');// Маршрут для MeetupsPost
+        // Другие маршруты для 'community'...
+    });
 
-    Route::get('/finance/cards', [CreditCardsController::class, 'index'])->name('cards');// Маршрут для CreditCards
-    Route::get('/finance/transactions', [TransactionsController::class, 'index'])->name('transactions');// Маршрут для Transactions
-    Route::get('/finance/transaction-details', [TransactionDetailsController::class, 'index'])->name('transaction-details');// Маршрут для TransactionDetails
+    // Маршруты для группы 'finance'
+    Route::group(['prefix' => 'finance'], function () {
+        Route::get('/cards', [CreditCardsController::class, 'index'])->name('cards');// Маршрут для CreditCards
+        Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions');// Маршрут для Transactions
+        Route::get('/transaction-details', [TransactionDetailsController::class, 'index'])->name('transaction-details');// Маршрут для TransactionDetails
+        // Другие маршруты для 'finance'...
+    });
 
-    Route::get('/job/job-listing', [JobListingController::class, 'index'])->name('job-listing');// Маршрут для JobListing
-    Route::get('/job/job-post', [JobPostController::class, 'index'])->name('job-post');// Маршрут для JobPost
-    Route::get('/job/company-profile', [CompanyProfileController::class, 'index'])->name('company-profile');// Маршрут для CompanyProfile
+    // Маршруты для группы 'finance'
+    Route::group(['prefix' => 'job'], function () {
+        Route::get('/job-listing', [JobListingController::class, 'index'])->name('job-listing');// Маршрут для JobListing
+        Route::get('/job-post', [JobPostController::class, 'index'])->name('job-post');// Маршрут для JobPost
+        Route::get('/company-profile', [CompanyProfileController::class, 'index'])->name('company-profile');// Маршрут для CompanyProfile
+        // Другие маршруты для 'finance'...
+    });
 
-    Route::get('/tasks/kanban', [TasksKanbanController::class, 'index'])->name('tasks-kanban.index');// Маршрут для TasksKanban
-    Route::get('/tasks/list', [TasksListController::class, 'index'])->name('tasks-list');// Маршрут для TasksList
+    // Маршруты для группы 'tasks'
+        Route::group(['prefix' => 'tasks'], function () {
+        Route::get('/kanban', [TasksKanbanController::class, 'index'])->name('tasks-kanban');// Маршрут для TasksKanban
+        Route::get('/list', [TasksListController::class, 'index'])->name('tasks-list');// Маршрут для TasksList
+        // Другие маршруты для 'tasks'...
+    });
 
-    Route::get('/settings/account', [AccountController::class, 'index'])->name('account');// Маршрут для Account
-    Route::get('/settings/notifications', [NotificationsController::class, 'index'])->name('notifications');// Маршрут для Notifications
-    Route::get('/settings/apps', [AppsController::class, 'index'])->name('apps');// Маршрут для Apps
-    Route::get('/settings/plans', [PlansController::class, 'index'])->name('plans');// Маршрут для Plans
-    Route::get('/settings/billing', [BillingController::class, 'index'])->name('billing');// Маршрут для Billing
-    Route::get('/settings/feedback', [FeedbackController::class, 'index'])->name('feedback');// Маршрут для Feedback
+    // Маршруты для группы 'settings'
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/account', [AccountController::class, 'index'])->name('account');// Маршрут для Account
+        Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');// Маршрут для Notifications
+        Route::get('/apps', [AppsController::class, 'index'])->name('apps');// Маршрут для Apps
+        Route::get('/plans', [PlansController::class, 'index'])->name('plans');// Маршрут для Plans
+        Route::get('/billing', [BillingController::class, 'index'])->name('billing');// Маршрут для Billing
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');// Маршрут для Feedback
+        // Другие маршруты для 'settings'...
+    });
 
-    Route::get('/utility/changelog', [ChangelogController::class, 'index'])->name('changelog');// Маршрут для Changelog
-    Route::get('/utility/roadmap', [RoadmapController::class, 'index'])->name('roadmap');// Маршрут для Roadmap
-    Route::get('/utility/faqs', [FaqsController::class, 'index'])->name('faqs');// Маршрут для Faqs
-    Route::get('/utility/empty-state', [EmptyStateController::class, 'index'])->name('empty-state');// Маршрут для EmptyState
-    Route::get('/utility/404', [PageNotFoundController::class, 'index'])->name('page-not-found');// Маршрут для PageNotFound
-    Route::get('/utility/knowledge-base', [KnowledgeBaseController::class, 'index'])->name('knowledge-base');// Маршрут для KnowledgeBase
+    // Маршруты для группы 'utility'
+    Route::group(['prefix' => 'utility'], function () {
+        Route::get('/changelog', [ChangelogController::class, 'index'])->name('changelog');// Маршрут для Changelog
+        Route::get('/roadmap', [RoadmapController::class, 'index'])->name('roadmap');// Маршрут для Roadmap
+        Route::get('/faqs', [FaqsController::class, 'index'])->name('faqs');// Маршрут для Faqs
+        Route::get('/empty-state', [EmptyStateController::class, 'index'])->name('empty-state');// Маршрут для EmptyState
+        Route::get('/404', [PageNotFoundController::class, 'index'])->name('page-not-found');// Маршрут для PageNotFound
+        Route::get('/knowledge-base', [KnowledgeBaseController::class, 'index'])->name('knowledge-base');// Маршрут для KnowledgeBase
+        // Другие маршруты для 'utility'...
+    });
 
-    Route::get('/component/button', [ButtonPageController::class, 'index'])->name('button-page');// Маршрут для ButtonPage
-    Route::get('/component/form', [FormPageController::class, 'index'])->name('form-page');// Маршрут для FormPage
-    Route::get('/component/dropdown', [DropdownPageController::class, 'index'])->name('dropdown-page');// Маршрут для DropdownPage
-    Route::get('/component/alert', [AlertPageController::class, 'index'])->name('alert-page');// Маршрут для AlertPage
-    Route::get('/component/modal', [ModalPageController::class, 'index'])->name('modal-page');// Маршрут для ModalPage
-    Route::get('/component/pagination', [PaginationPageController::class, 'index'])->name('pagination-page');// Маршрут для PaginationPage
-    Route::get('/component/tabs', [TabsPageController::class, 'index'])->name('tabs-page');// Маршрут для TabsPage
-    Route::get('/component/breadcrumb', [BreadcrumbPageController::class, 'index'])->name('breadcrumb-page');// Маршрут для BreadcrumbPage
-    Route::get('/component/badge', [BadgePageController::class, 'index'])->name('badge-page');// Маршрут для BadgePage
-    Route::get('/component/avatar', [AvatarPageController::class, 'index'])->name('avatar-page');// Маршрут для AvatarPage
-    Route::get('/component/tooltip', [TooltipPageController::class, 'index'])->name('tooltip-page');// Маршрут для TooltipPage
-    Route::get('/component/accordion', [AccordionPageController::class, 'index'])->name('accordion-page');// Маршрут для AccordionPage
-    Route::get('/component/icons', [IconsPageController::class, 'index'])->name('icons-page');// Маршрут для IconsPage
+    // Маршруты для группы 'component'
+    Route::group(['prefix' => 'component'], function () {
+        Route::get('/button', [ButtonPageController::class, 'index'])->name('button-page');// Маршрут для ButtonPage
+        Route::get('/form', [FormPageController::class, 'index'])->name('form-page');// Маршрут для FormPage
+        Route::get('/dropdown', [DropdownPageController::class, 'index'])->name('dropdown-page');// Маршрут для DropdownPage
+        Route::get('/alert', [AlertPageController::class, 'index'])->name('alert-page');// Маршрут для AlertPage
+        Route::get('/modal', [ModalPageController::class, 'index'])->name('modal-page');// Маршрут для ModalPage
+        Route::get('/pagination', [PaginationPageController::class, 'index'])->name('pagination-page');// Маршрут для PaginationPage
+        Route::get('/tabs', [TabsPageController::class, 'index'])->name('tabs-page');// Маршрут для TabsPage
+        Route::get('/breadcrumb', [BreadcrumbPageController::class, 'index'])->name('breadcrumb-page');// Маршрут для BreadcrumbPage
+        Route::get('/badge', [BadgePageController::class, 'index'])->name('badge-page');// Маршрут для BadgePage
+        Route::get('/avatar', [AvatarPageController::class, 'index'])->name('avatar-page');// Маршрут для AvatarPage
+        Route::get('/tooltip', [TooltipPageController::class, 'index'])->name('tooltip-page');// Маршрут для TooltipPage
+        Route::get('/accordion', [AccordionPageController::class, 'index'])->name('accordion-page');// Маршрут для AccordionPage
+        Route::get('/icons', [IconsPageController::class, 'index'])->name('icons-page');// Маршрут для IconsPage
+        // Другие маршруты для 'component'...
+    });
 
     // Другие маршруты...
 });

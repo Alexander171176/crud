@@ -23,7 +23,7 @@ export default {
                 <img src="../../../images/404-illustration.svg" width="176" height="176" alt="404 illustration" />
               </div>
               <div class="mb-6">Hmm...this page doesn’t exist. Try searching for something else!</div>
-              <router-link to="/" class="btn bg-indigo-500 hover:bg-indigo-600 text-white">Back To Dashboard</router-link>
+              <router-link :to="{ name: 'dashboard' }" class="btn bg-indigo-500 hover:bg-indigo-600 text-white">Back To Dashboard</router-link>
             </div>
 
           </div>

@@ -1,66 +1,19 @@
 <script>
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head} from "@inertiajs/vue3";
 
 export default {
     name: 'Pay',
     components: {
         Head,
-    },
-    data: function () {
-        return {
-            card: true,
-        }
+        AuthenticatedLayout
     }
 }
 </script>
 
 <template>
     <Head title="Pay"/>
-    <header class="bg-white border-b border-slate-200">
-        <div class="px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 -mb-px">
-
-                <!-- Logo -->
-                <router-link class="block" to="/">
-                    <svg width="32" height="32" viewBox="0 0 32 32">
-                        <defs>
-                            <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
-                                <stop stop-color="#A5B4FC" stop-opacity="0" offset="0%"/>
-                                <stop stop-color="#A5B4FC" offset="100%"/>
-                            </linearGradient>
-                            <linearGradient x1="88.638%" y1="29.267%" x2="22.42%" y2="100%" id="logo-b">
-                                <stop stop-color="#38BDF8" stop-opacity="0" offset="0%"/>
-                                <stop stop-color="#38BDF8" offset="100%"/>
-                            </linearGradient>
-                        </defs>
-                        <rect fill="#6366F1" width="32" height="32" rx="16"/>
-                        <path
-                            d="M18.277.16C26.035 1.267 32 7.938 32 16c0 8.837-7.163 16-16 16a15.937 15.937 0 01-10.426-3.863L18.277.161z"
-                            fill="#4F46E5"/>
-                        <path
-                            d="M7.404 2.503l18.339 26.19A15.93 15.93 0 0116 32C7.163 32 0 24.837 0 16 0 10.327 2.952 5.344 7.404 2.503z"
-                            fill="url(#logo-a)"/>
-                        <path
-                            d="M2.223 24.14L29.777 7.86A15.926 15.926 0 0132 16c0 8.837-7.163 16-16 16-5.864 0-10.991-3.154-13.777-7.86z"
-                            fill="url(#logo-b)"/>
-                    </svg>
-                </router-link>
-
-                <router-link class="block rounded-full bg-slate-100 text-slate-500 hover:text-slate-600"
-                             to="/ecommerce/cart">
-                    <span class="sr-only">Back</span>
-                    <svg width="32" height="32" viewBox="0 0 32 32">
-                        <path class="fill-current"
-                              d="M15.95 14.536l4.242-4.243a1 1 0 111.415 1.414l-4.243 4.243 4.243 4.242a1 1 0 11-1.415 1.415l-4.242-4.243-4.243 4.243a1 1 0 01-1.414-1.415l4.243-4.242-4.243-4.243a1 1 0 011.414-1.414l4.243 4.243z"/>
-                    </svg>
-                </router-link>
-
-            </div>
-        </div>
-    </header>
-
-    <main>
-
+    <AuthenticatedLayout>
         <div class="relative pt-8">
             <div class="absolute inset-0 bg-slate-800 overflow-hidden" aria-hidden="true">
                 <img class="object-cover h-full w-full filter blur opacity-10" src="../../../images/pay-bg.jpg"
@@ -71,7 +24,6 @@ export default {
                      alt="Pay background"/>
             </div>
         </div>
-
         <div class="relative px-4 sm:px-6 lg:px-8 pb-8 max-w-lg mx-auto">
             <div class="bg-white px-8 pb-6 rounded-b shadow-lg">
 
@@ -105,7 +57,7 @@ export default {
                 </div>
 
                 <!-- Card form -->
-                <div v-if="card">
+                <div>
                     <div class="space-y-4">
                         <!-- Card Number -->
                         <div>
@@ -148,29 +100,31 @@ export default {
                                 $253.00
                             </button>
                         </div>
-                        <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for
+                        <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48
+                            for
                             VAT in Italy
                         </div>
                     </div>
                 </div>
 
                 <!-- PayPal form -->
-                <div v-if="!card">
+                <div>
                     <div>
                         <div class="mb-4">
-                            <button class="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay with
+                            <button class="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay
+                                with
                                 PayPal - $253.00
                             </button>
                         </div>
-                        <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for
+                        <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48
+                            for
                             VAT in Italy
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </main>
+    </AuthenticatedLayout>
 </template>
 
 

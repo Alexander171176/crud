@@ -1,19 +1,19 @@
 <script>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import AdminLayout from "@/Layouts/AdminLayout.vue";
 import {Head} from "@inertiajs/vue3";
 
 export default {
     name: 'Pay',
     components: {
         Head,
-        AuthenticatedLayout
+        AdminLayout
     }
 }
 </script>
 
 <template>
     <Head title="Pay"/>
-    <AuthenticatedLayout>
+    <AdminLayout>
         <div class="relative pt-8">
             <div class="absolute inset-0 bg-slate-800 overflow-hidden" aria-hidden="true">
                 <img class="object-cover h-full w-full filter blur opacity-10" src="../../../images/pay-bg.jpg"
@@ -124,7 +124,7 @@ export default {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 
 

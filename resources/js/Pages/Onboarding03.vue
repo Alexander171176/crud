@@ -1,19 +1,19 @@
 <script>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 import {Head} from "@inertiajs/vue3";
 
 export default {
     name: 'Onboarding03',
     components: {
         Head,
-        AuthenticatedLayout,
+        AdminLayout,
     },
 }
 </script>
 
 <template>
     <Head title="Onboarding-Three"/>
-    <AuthenticatedLayout>
+    <AdminLayout>
         <main class="bg-white">
 
             <div class="relative flex">
@@ -172,5 +172,5 @@ export default {
             </div>
 
         </main>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

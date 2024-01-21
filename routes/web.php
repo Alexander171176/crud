@@ -81,8 +81,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::post('/logout', [LogoutController::class, 'index'])->name('logout');// Маршрут для Logout
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -106,8 +104,14 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-// Группа маршрутов для панели управления
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'verified']], function () {
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');// Маршрут для Logout
+
+Route::get('/admin', function () {
+    return Inertia::render('Admin');
+})->middleware(['auth', 'verified'])->name('admin');
+
+// Группа маршрутов для панели администратора
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
 
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics');// Маршрут для Analytics
     Route::get('/fintech', [FintechController::class, 'index'])->name('fintech');// Маршрут для Fintech

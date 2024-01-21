@@ -1,15 +1,15 @@
 <script>
-import { ref } from 'vue'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import {ref} from 'vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 import InboxSidebar from '@/Partials/inbox/InboxSidebar.vue'
 import InboxBody from '@/Partials/inbox/InboxBody.vue'
-import { Head } from '@inertiajs/vue3'
+import {Head} from '@inertiajs/vue3'
 
 export default {
     name: 'Inbox',
     components: {
         Head,
-        AuthenticatedLayout,
+        AdminLayout,
         InboxSidebar,
         InboxBody,
     },
@@ -25,17 +25,18 @@ export default {
 </script>
 
 <template>
-    <Head title="Inbox" />
-    <AuthenticatedLayout>
+    <Head title="Inbox"/>
+    <AdminLayout>
         <div class="relative flex">
 
-          <!-- Inbox sidebar -->
-          <InboxSidebar :inboxSidebarOpen="inboxSidebarOpen" @close-inboxsidebar="inboxSidebarOpen = false" />
+            <!-- Inbox sidebar -->
+            <InboxSidebar :inboxSidebarOpen="inboxSidebarOpen" @close-inboxsidebar="inboxSidebarOpen = false"/>
 
-          <!-- Inbox body -->
-          <InboxBody :inboxSidebarOpen="inboxSidebarOpen" @toggle-inboxsidebar="inboxSidebarOpen = !inboxSidebarOpen" />
+            <!-- Inbox body -->
+            <InboxBody :inboxSidebarOpen="inboxSidebarOpen"
+                       @toggle-inboxsidebar="inboxSidebarOpen = !inboxSidebarOpen"/>
 
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 

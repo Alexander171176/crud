@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import {ref} from 'vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 import Datepicker from '@/Components/Datepicker.vue'
 import AnalyticsCard01 from '@/Partials/analytics/AnalyticsCard01.vue'
 import AnalyticsCard02 from '@/Partials/analytics/AnalyticsCard02.vue'
@@ -13,15 +13,15 @@ import AnalyticsCard08 from '@/Partials/analytics/AnalyticsCard08.vue'
 import AnalyticsCard09 from '@/Partials/analytics/AnalyticsCard09.vue'
 import AnalyticsCard10 from '@/Partials/analytics/AnalyticsCard10.vue'
 import AnalyticsCard11 from '@/Partials/analytics/AnalyticsCard11.vue'
-import { Head } from '@inertiajs/vue3'
+import {Head} from '@inertiajs/vue3'
 
 const sidebarOpen = ref(false)
 
 </script>
 
 <template>
-    <Head title="Analytics" />
-    <AuthenticatedLayout>
+    <Head title="Analytics"/>
+    <AdminLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
             <!-- Page header -->
@@ -71,5 +71,5 @@ const sidebarOpen = ref(false)
             </div>
 
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>

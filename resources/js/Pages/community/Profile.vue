@@ -1,14 +1,14 @@
 <script>
-import { ref } from 'vue'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import {ref} from 'vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 import ProfileSidebar from '@/Partials/community/ProfileSidebar.vue'
 import ProfileBody from '@/Partials/community/ProfileBody.vue'
-import { Head } from '@inertiajs/vue3'
+import {Head} from '@inertiajs/vue3'
 
 export default {
     name: 'Profile',
     components: {
-        AuthenticatedLayout,
+        AdminLayout,
         Head,
         ProfileSidebar,
         ProfileBody,
@@ -25,18 +25,20 @@ export default {
 </script>
 
 <template>
-    <Head title="Profile" />
-    <AuthenticatedLayout>
+    <Head title="Profile"/>
+    <AdminLayout>
         <div class="relative flex">
 
-          <!-- Profile sidebar -->
-          <ProfileSidebar :profileSidebarOpen="profileSidebarOpen" @close-profilesidebar="profileSidebarOpen = false" />
+            <!-- Profile sidebar -->
+            <ProfileSidebar :profileSidebarOpen="profileSidebarOpen"
+                            @close-profilesidebar="profileSidebarOpen = false"/>
 
-          <!-- Profile body -->
-          <ProfileBody :profileSidebarOpen="profileSidebarOpen" @toggle-profilesidebar="profileSidebarOpen = !profileSidebarOpen" />
+            <!-- Profile body -->
+            <ProfileBody :profileSidebarOpen="profileSidebarOpen"
+                         @toggle-profilesidebar="profileSidebarOpen = !profileSidebarOpen"/>
 
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 
 

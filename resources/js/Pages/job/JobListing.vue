@@ -1,11 +1,11 @@
 <script>
-import { ref } from 'vue'
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import {ref} from 'vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
 import JobSidebar from '@/Partials/job/JobSidebar.vue'
 import DropdownSort from '@/Components/DropdownSort.vue'
 import JobListItem from '@/Partials/job/JobListItem.vue'
 import PaginationNumeric from '@/Components/PaginationNumeric.vue'
-import { Head } from '@inertiajs/vue3'
+import {Head} from '@inertiajs/vue3'
 
 import Image01 from '../../../images/company-icon-05.svg'
 import Image02 from '../../../images/company-icon-06.svg'
@@ -18,7 +18,7 @@ import Image07 from '../../../images/company-icon-02.svg'
 export default {
     name: 'JobListing',
     components: {
-        AuthenticatedLayout,
+        AdminLayout,
         Head,
         JobSidebar,
         DropdownSort,
@@ -148,80 +148,87 @@ export default {
 </script>
 
 <template>
-    <Head title="JobListing" />
-    <AuthenticatedLayout>
+    <Head title="JobListing"/>
+    <AdminLayout>
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
-          <!-- Page header -->
-          <div class="sm:flex sm:justify-between sm:items-center mb-5">
+            <!-- Page header -->
+            <div class="sm:flex sm:justify-between sm:items-center mb-5">
 
-            <!-- Left: Title -->
-            <div class="mb-4 sm:mb-0">
-              <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Search For Jobs ✨</h1>
+                <!-- Left: Title -->
+                <div class="mb-4 sm:mb-0">
+                    <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">Search For Jobs ✨</h1>
+                </div>
+
+                <!-- Post a job button -->
+                <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                    <svg class="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
+                        <path
+                            d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"/>
+                    </svg>
+                    <span class="hidden xs:block ml-2">Post A Job</span>
+                </button>
+
             </div>
 
-            <!-- Post a job button -->
-            <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
-              <svg class="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
-                <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
-              </svg>
-              <span class="hidden xs:block ml-2">Post A Job</span>
-            </button>
+            <!-- Page content -->
+            <div
+                class="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
 
-          </div>
+                <!-- Sidebar -->
+                <JobSidebar/>
 
-          <!-- Page content -->
-          <div class="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
+                <!-- Content -->
+                <div class="w-full">
 
-            <!-- Sidebar -->
-            <JobSidebar />
+                    <!-- Search form -->
+                    <div class="mb-5">
+                        <form class="relative">
+                            <label for="job-search" class="sr-only">Search</label>
+                            <input id="job-search" class="form-input w-full pl-9 focus:border-slate-300" type="search"
+                                   placeholder="Search job title or keyword…"/>
+                            <button class="absolute inset-0 right-auto group" type="submit" aria-label="Search">
+                                <svg
+                                    class="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2"
+                                    viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"/>
+                                    <path
+                                        d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
 
-              <!-- Content -->
-              <div class="w-full">
+                    <!-- Jobs header -->
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="text-sm text-slate-500 italic">Showing 289 Jobs</div>
+                        <!-- Sort -->
+                        <div class="text-sm">
+                            <span>Sort by </span>
+                            <DropdownSort align="right"/>
+                        </div>
+                    </div>
 
-                <!-- Search form -->
-                <div class="mb-5">
-                  <form class="relative">
-                    <label for="job-search" class="sr-only">Search</label>
-                    <input id="job-search" class="form-input w-full pl-9 focus:border-slate-300" type="search" placeholder="Search job title or keyword…" />
-                    <button class="absolute inset-0 right-auto group" type="submit" aria-label="Search">
-                      <svg class="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
-                        <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
-                      </svg>
-                    </button>
-                  </form>
+                    <!-- Job list -->
+                    <div class="space-y-2">
+                        <JobListItem
+                            v-for="item in items"
+                            :key="item.id"
+                            :item="item"
+                        />
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-6">
+                        <PaginationNumeric/>
+                    </div>
+
                 </div>
 
-                <!-- Jobs header -->
-                <div class="flex justify-between items-center mb-4">
-                  <div class="text-sm text-slate-500 italic">Showing 289 Jobs</div>
-                  <!-- Sort -->
-                  <div class="text-sm">
-                    <span>Sort by </span>
-                    <DropdownSort align="right" />
-                  </div>
-                </div>
-
-                <!-- Job list -->
-                <div class="space-y-2">
-                    <JobListItem
-                      v-for="item in items"
-                      :key="item.id"
-                      :item="item"
-                    />
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-6">
-                  <PaginationNumeric />
-                </div>
-
-              </div>
-
-          </div>
+            </div>
 
         </div>
-    </AuthenticatedLayout>
+    </AdminLayout>
 </template>
 

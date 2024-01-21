@@ -114,9 +114,9 @@ watch(sidebarExpanded, () => {
 
                         <!-- Dashboard -->
                         <SidebarLinkGroup v-slot="parentLink"
-                                          :activeCondition="currentRoute.fullPath === '/dashboard' || currentRoute.fullPath.includes('dashboard')">
+                                          :activeCondition="currentRoute.fullPath === '/admin' || currentRoute.fullPath.includes('admin')">
                             <a class="block text-slate-200 truncate transition duration-150"
-                               :class="(currentRoute.fullPath === '/dashboard' || currentRoute.fullPath.includes('dashboard')) ? 'hover:text-slate-200' : 'hover:text-white'"
+                               :class="(currentRoute.fullPath === '/admin' || currentRoute.fullPath.includes('dashboard')) ? 'hover:text-slate-200' : 'hover:text-white'"
                                href="#0"
                                @click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
@@ -143,7 +143,7 @@ watch(sidebarExpanded, () => {
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1" :class="!parentLink.expanded && 'hidden'">
-                                    <router-link :to="{ name: 'dashboard' }" custom
+                                    <router-link :to="{ name: 'admin' }" custom
                                                  v-slot="{ href, navigate, isExactActive }">
                                         <li class="mb-1 last:mb-0">
                                             <a
@@ -153,7 +153,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard'"
+                                                :href="href || '/admin'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -171,7 +171,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/analytics'"
+                                                :href="href || '/admin/analytics'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -189,7 +189,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/fintech'"
+                                                :href="href || '/admin/fintech'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -241,7 +241,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/customers'"
+                                                :href="href || '/admin/ecommerce/customers'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -259,7 +259,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/orders'"
+                                                :href="href || '/admin/ecommerce/orders'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -277,7 +277,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/invoices'"
+                                                :href="href || '/admin/ecommerce/invoices'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -295,7 +295,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/shop'"
+                                                :href="href || '/admin/ecommerce/shop'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -313,7 +313,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/shop-2'"
+                                                :href="href || '/admin/ecommerce/shop-2'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -331,7 +331,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/product'"
+                                                :href="href || '/admin/ecommerce/product'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -349,7 +349,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/cart'"
+                                                :href="href || '/admin/ecommerce/cart'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -367,7 +367,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/cart-2'"
+                                                :href="href || '/admin/ecommerce/cart-2'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -385,7 +385,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/cart-3'"
+                                                :href="href || '/admin/ecommerce/cart-3'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -403,7 +403,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/ecommerce/pay'"
+                                                :href="href || '/admin/ecommerce/pay'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -453,7 +453,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/users-tabs'"
+                                                :href="href || '/admin/community/users-tabs'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -471,7 +471,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/users-tiles'"
+                                                :href="href || '/admin/community/users-tiles'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -489,7 +489,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/profile'"
+                                                :href="href || '/admin/community/profile'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -507,7 +507,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/feed'"
+                                                :href="href || '/admin/community/feed'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -525,7 +525,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/forum'"
+                                                :href="href || '/admin/community/forum'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -543,7 +543,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/forum-post'"
+                                                :href="href || '/admin/community/forum-post'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -561,7 +561,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/meetups'"
+                                                :href="href || '/admin/community/meetups'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -579,7 +579,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/community/meetups-post'"
+                                                :href="href || '/admin/community/meetups-post'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -631,7 +631,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/finance/cards'"
+                                                :href="href || '/admin/finance/cards'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -649,7 +649,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/finance/transactions'"
+                                                :href="href || '/admin/finance/transactions'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -667,7 +667,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/finance/transaction-details'"
+                                                :href="href || '/admin/finance/transaction-details'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -718,7 +718,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/job/job-listing'"
+                                                :href="href || '/admin/job/job-listing'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -736,7 +736,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/job/job-post'"
+                                                :href="href || '/admin/job/job-post'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -754,7 +754,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/job/company-profile'"
+                                                :href="href || '/admin/job/company-profile'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -806,7 +806,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/tasks/kanban'"
+                                                :href="href || '/admin/tasks/kanban'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -824,7 +824,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/tasks/list'"
+                                                :href="href || '/admin/tasks/list'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -878,7 +878,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/account'"
+                                                :href="href || '/admin/settings/account'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -896,7 +896,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/notifications'"
+                                                :href="href || '/admin/settings/notifications'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -914,7 +914,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/apps'"
+                                                :href="href || '/admin/settings/apps'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -932,7 +932,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/plans'"
+                                                :href="href || '/admin/settings/plans'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -950,7 +950,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/billing'"
+                                                :href="href || '/admin/settings/billing'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -968,7 +968,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/settings/feedback'"
+                                                :href="href || '/admin/settings/feedback'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1022,7 +1022,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/changelog'"
+                                                :href="href || '/admin/utility/changelog'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1040,7 +1040,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/roadmap'"
+                                                :href="href || '/admin/utility/roadmap'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1058,7 +1058,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/faqs'"
+                                                :href="href || '/admin/utility/faqs'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1076,7 +1076,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/empty-state'"
+                                                :href="href || '/admin/utility/empty-state'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1094,7 +1094,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/404'"
+                                                :href="href || '/admin/utility/404'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1112,7 +1112,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/utility/knowledge-base'"
+                                                :href="href || '/admin/utility/knowledge-base'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1162,7 +1162,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/button'"
+                                                :href="href || '/admin/component/button'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1180,7 +1180,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/form'"
+                                                :href="href || '/admin/component/form'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1198,7 +1198,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/dropdown'"
+                                                :href="href || '/admin/component/dropdown'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1216,7 +1216,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/alert'"
+                                                :href="href || '/admin/component/alert'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1234,7 +1234,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/modal'"
+                                                :href="href || '/admin/component/modal'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1252,7 +1252,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/pagination'"
+                                                :href="href || '/admin/component/pagination'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1270,7 +1270,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/tabs'"
+                                                :href="href || '/admin/component/tabs'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1288,7 +1288,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/breadcrumb'"
+                                                :href="href || '/admin/component/breadcrumb'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1306,7 +1306,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/badge'"
+                                                :href="href || '/admin/component/badge'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1324,7 +1324,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/avatar'"
+                                                :href="href || '/admin/component/avatar'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1342,7 +1342,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/tooltip'"
+                                                :href="href || '/admin/component/tooltip'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1360,7 +1360,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/accordion'"
+                                                :href="href || '/admin/component/accordion'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1378,7 +1378,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/component/icons'"
+                                                :href="href || '/admin/component/icons'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1509,7 +1509,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/signin'"
+                                                :href="href || '/admin/signin'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1527,7 +1527,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/signup'"
+                                                :href="href || '/admin/signup'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1545,7 +1545,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/reset-password'"
+                                                :href="href || '/admin/reset-password'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1594,7 +1594,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/onboarding-01'"
+                                                :href="href || '/admin/onboarding-01'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1612,7 +1612,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/onboarding-02'"
+                                                :href="href || '/admin/onboarding-02'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1630,7 +1630,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/onboarding-03'"
+                                                :href="href || '/admin/onboarding-03'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span
@@ -1648,7 +1648,7 @@ watch(sidebarExpanded, () => {
                                                     'text-slate-400': !isExactActive,
                                                     'hover:text-slate-200': !isExactActive
                                                 }"
-                                                :href="href || '/dashboard/onboarding-04'"
+                                                :href="href || '/admin/onboarding-04'"
                                                 @click="() => { navigate(); }"
                                             >
                                                 <span

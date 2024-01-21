@@ -6,7 +6,9 @@ const open = ref(true)
 <template>
   <div v-show="open" class="fixed bottom-0 right-0 w-full md:bottom-8 md:right-12 md:w-auto z-50">
     <div class="bg-slate-800 border border-transparent dark:border-slate-700 text-slate-50 text-sm p-3 md:rounded shadow-lg flex justify-between">
-      <div>👉 <a class="hover:underline" href="https://github.com/cruip/vuejs-admin-dashboard-template" target="_blank" rel="noreferrer">Download Mosaic Lite on GitHub</a></div>
+      <div>👉
+          <a class="hover:underline" href="https://www.web-dev.kz/" target="_blank" rel="noreferrer">Разработка сайтов и приложений</a>
+      </div>
       <button class="text-slate-500 hover:text-slate-400 ml-5" @click="open = false">
         <span class="sr-only">Close</span>
         <svg class="w-4 h-4 shrink-0 fill-current" viewBox="0 0 16 16">
